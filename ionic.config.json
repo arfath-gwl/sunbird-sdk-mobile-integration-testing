@@ -1,5 +1,7 @@
 {
   "name": "sunbird-sdk-mobile-integration-testing",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
