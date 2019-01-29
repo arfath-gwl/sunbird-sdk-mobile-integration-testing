@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, ErrorHandler, NgModule, Provider} from '@angular/core';
-import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule, Platform} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {MyApp} from './app.component';
@@ -8,9 +8,9 @@ import {HomePage} from '../pages/home/home';
 import {SunbirdSdk} from 'sunbird-sdk';
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 
-export class SunbirdSdkInjectionTokens {
-  public static CONTENT_SERVICE = Symbol('CONTENT_SERVICE');
-  public static COURSE_SERVICE = Symbol('COURSE_SERVICE');
+export namespace SunbirdSdkInjectionTokens {
+  export const CONTENT_SERVICE = 'CONTENT_SERVICE';
+  export const COURSE_SERVICE = 'COURSE_SERVICE';
 }
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
@@ -23,10 +23,18 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }];
 };
 
-export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID) => () => Promise<void> =
-  (uniqueDeviceID: UniqueDeviceID) => {
+export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platform) => () => Promise<void> =
+  (uniqueDeviceID: UniqueDeviceID, platform: Platform) => {
     return async () => {
-      const deviceId = await uniqueDeviceID.get();
+      let deviceId = '';
+
+      console.log(platform);
+
+      if (platform.is('core') || platform.is('mobileweb')) {
+        deviceId = '451a26e2-98b4-55d0-3554-630618743698';
+      } else {
+        deviceId = await uniqueDeviceID.get();
+      }
 
       SunbirdSdk.instance.init({
         apiConfig: {
@@ -98,8 +106,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID) => () => Promis
     StatusBar,
     SplashScreen,
     UniqueDeviceID,
+    ...sunbirdSdkServicesProvidersFactory(),
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [UniqueDeviceID], multi: true}
+    {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [UniqueDeviceID, Platform], multi: true}
   ]
 })
 export class AppModule {
