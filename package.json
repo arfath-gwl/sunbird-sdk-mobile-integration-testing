@@ -56,7 +56,7 @@
   "description": "An Ionic project",
   "config": {
     "ionic_bundler": "webpack",
-    "ionic_source_map_type": "eval-source-map",
+    "ionic_source_map_type": "inline-source-map",
     "ionic_generate_source_map": "true"
   },
   "cordova": {
