@@ -8,18 +8,16 @@ import {HomePage} from '../pages/home/home';
 import {SunbirdSdk} from 'sunbird-sdk';
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 
-export namespace SunbirdSdkInjectionTokens {
-  export const CONTENT_SERVICE = 'CONTENT_SERVICE';
-  export const COURSE_SERVICE = 'COURSE_SERVICE';
-}
-
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
-    provide: SunbirdSdkInjectionTokens.CONTENT_SERVICE,
-    useValue: SunbirdSdk.instance.contentService
+    provide: 'COURSE_SERVICE',
+    useFactory: () => SunbirdSdk.instance.courseService
   }, {
-    provide: SunbirdSdkInjectionTokens.COURSE_SERVICE,
-    useValue: SunbirdSdk.instance.courseService
+    provide: 'SHARED_PREFERENCES',
+    useFactory: () => SunbirdSdk.instance.sharedPreferences
+  }, {
+    provide: 'API_SERVICE',
+    useFactory: () => SunbirdSdk.instance.apiService
   }];
 };
 
@@ -27,8 +25,6 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
   (uniqueDeviceID: UniqueDeviceID, platform: Platform) => {
     return async () => {
       let deviceId = '';
-
-      console.log(platform);
 
       if (platform.is('core') || platform.is('mobileweb')) {
         deviceId = '451a26e2-98b4-55d0-3554-630618743698';
@@ -56,10 +52,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
             timeToLive: 2000
           }
         },
-        dbContext: {
-          getDBName: () => 'GenieServices.db',
-          getDBVersion: () => 16,
-          getAppMigrationList: () => []
+        dbConfig: {
+          dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
           apiPath: ''
