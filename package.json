@@ -5,7 +5,7 @@
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
-    "start": "ionic-app-scripts serve",
+    "start": "CHOKIDAR_USEPOLLING=1 ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint"
@@ -27,6 +27,7 @@
     "@ionic-native/status-bar": "~4.18.0",
     "@ionic-native/unique-device-id": "^4.7.0",
     "@ionic/storage": "2.2.0",
+    "axios": "^0.18.0",
     "cordova-android": "7.1.4",
     "cordova-plugin-advanced-http": "2.0.4",
     "cordova-plugin-customtabs": "git+https://github.com/souvikmondal/cordova-plugin-customtabs.git",
@@ -42,10 +43,13 @@
     "crypto-js": "^3.1.9-1",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
+    "jsonwebtoken": "^8.4.0",
     "jsrsasign": "^8.0.12",
+    "moment": "^2.24.0",
     "rxjs": "5.5.11",
     "sb-cordova-plugin-db": "file:../sb-cordova-plugin-db",
     "sunbird": "file:../sunbird/genie-sdk-wrapper/dist.tgz",
+    "sunbird-sdk": "file:../sunbird-sdk/tmp",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.29"
   },

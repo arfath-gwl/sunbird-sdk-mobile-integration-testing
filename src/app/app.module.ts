@@ -27,24 +27,25 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
       let deviceId = '';
 
       if (platform.is('core') || platform.is('mobileweb')) {
-        deviceId = '451a26e2-98b4-55d0-3554-630618743698';
+        deviceId = '4adce7fad56e02b7';
       } else {
         deviceId = await uniqueDeviceID.get();
       }
 
       SunbirdSdk.instance.init({
         apiConfig: {
-          baseUrl: 'https://dev.sunbirded.org',
+          debugMode: true,
+          baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'org.sunbird.app.dev://mobile',
             logoutUrl: '',
             authUrl: ''
           },
           api_authentication: {
-            mobileAppKey: 'sunbird - 0.1',
-            mobileAppSecret: 'd0299ce55a6440eb968b46f355e22504',
+            mobileAppKey: 'sunbird-0.1',
+            mobileAppSecret: 'eab91d5404434800b81996c1cd699d19',
             mobileAppConsumer: 'mobile_device',
-            channelId: 'b00bc992ef25f1a9a8d63291e20efc8d',
+            channelId: '505c7c48ac6dc1edc9b08f21db5a571d',
             producerId: 'dev.sunbird.app',
             deviceId: deviceId
           },
