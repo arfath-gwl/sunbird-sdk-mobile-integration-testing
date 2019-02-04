@@ -54,6 +54,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
+          debugMode: true,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
@@ -78,6 +79,10 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         pageServiceConfig: {
           apiPath: '',
           filePath: ''
+        },
+        appConfig: {
+          maxCompatibilityLevel: 100,
+          minCompatibilityLevel: 0
         }
       });
     };

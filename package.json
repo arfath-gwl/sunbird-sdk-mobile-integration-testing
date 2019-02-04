@@ -53,7 +53,8 @@
     "sb-cordova-plugin-customtabs": "git+https://github.com/Sunbird-Ed/sb-cordova-plugin-customtabs.git",
     "sb-cordova-plugin-db": "git+https://github.com/swayangjit/sb-cordova-plugin-db.git",
     "typescript": "~2.6.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "squel": "^5.12.2"
   },
   "description": "An Ionic project",
   "config": {
