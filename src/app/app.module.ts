@@ -32,9 +32,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         deviceId = await uniqueDeviceID.get();
       }
 
-      SunbirdSdk.instance.init({
+      await SunbirdSdk.instance.init({
         apiConfig: {
-          debugMode: true,
+          debugMode: false,
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'org.sunbird.app.dev://mobile',
@@ -54,7 +54,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: true,
+          debugMode: false,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
