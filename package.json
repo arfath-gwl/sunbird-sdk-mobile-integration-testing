@@ -41,6 +41,8 @@
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "rxjs": "5.5.11",
+    "sb-cordova-plugin-customtabs": "git+https://github.com/Sunbird-Ed/sb-cordova-plugin-customtabs.git",
+    "sb-cordova-plugin-db": "git+https://github.com/swayangjit/sb-cordova-plugin-db.git",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.29"
   },
@@ -50,11 +52,9 @@
     "crypto-js": "^3.1.9-1",
     "jsonwebtoken": "^8.4.0",
     "moment": "^2.23.0",
-    "sb-cordova-plugin-customtabs": "git+https://github.com/Sunbird-Ed/sb-cordova-plugin-customtabs.git",
-    "sb-cordova-plugin-db": "git+https://github.com/swayangjit/sb-cordova-plugin-db.git",
+    "squel": "^5.12.2",
     "typescript": "~2.6.2",
-    "uuid": "^3.3.2",
-    "squel": "^5.12.2"
+    "uuid": "^3.3.2"
   },
   "description": "An Ionic project",
   "config": {
@@ -73,9 +73,9 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "sb-cordova-plugin-db": {},
       "com.outsystems.mobile.stetho": {},
-      "cordova-plugin-advanced-http": {}
+      "cordova-plugin-advanced-http": {},
+      "sb-cordova-plugin-db": {}
     },
     "platforms": [
       "android"
