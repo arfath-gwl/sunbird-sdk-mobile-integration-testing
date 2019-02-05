@@ -7,6 +7,8 @@ import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {SunbirdSdk} from 'sunbird-sdk';
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
+import {ProfilePage} from '../pages/profile/profile';
+import { FrameworkPage } from '../pages/framework/framework';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -21,6 +23,12 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'PAGE_ASSEMBLE_SERVICE',
     useFactory: () => SunbirdSdk.instance.pageAssembleService
+  }, {
+    provide: 'PROFILE_SERVICE',
+    useFactory: () => SunbirdSdk.instance.profileService
+  }, {
+    provide: 'DB_SERVICE',
+    useFactory: () => SunbirdSdk.instance.dbService
   }];
 };
 
@@ -35,9 +43,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         deviceId = await uniqueDeviceID.get();
       }
 
-      SunbirdSdk.instance.init({
+      await SunbirdSdk.instance.init({
         apiConfig: {
-          debugMode: true,
+          debugMode: false,
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'staging.diksha.app://mobile',
@@ -57,7 +65,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: true,
+          debugMode: false,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
@@ -94,7 +102,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ProfilePage,
+    FrameworkPage
   ],
   imports: [
     BrowserModule,
@@ -103,7 +113,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ProfilePage,
+    FrameworkPage
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {ApiService, HttpRequestType, Request, PageAssembleService, PageName, PageAssembleCriteria} from 'sunbird-sdk';
+import {ProfilePage} from "../profile/profile";
+
 
 @Component({
   selector: 'page-home',
@@ -30,4 +32,7 @@ export class HomePage {
     });
   };
 
+  goToProfilePage() {
+    this.navCtrl.push(ProfilePage);
+  }
 }

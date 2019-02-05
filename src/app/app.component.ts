@@ -9,7 +9,9 @@ import {ApiService, HttpRequestType, Request, PageAssembleService, PageName, Pag
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage: any = HomePage;
+  profile: any = {};
+  phone: string;
 
   constructor(
     platform: Platform,
@@ -27,10 +29,26 @@ export class MyApp {
 
     setTimeout(() => {
       this.testProtectedApi();
-      // this.testApiCall();
+      this.testProfileServiceApi();
+      this.testApiCall();
     }, 2000);
 
     
+  }
+
+  private async testProfileServiceApi() {
+    const t = await this.apiService.fetch(
+      new Request.Builder()
+        .withType(HttpRequestType.PATCH)
+        .withPath('/user/v1/update')
+        .withBody({
+          "id": "api.user.update",
+          "ver": "v1",
+          "userId": "profile1",
+          "phone": "9862210367"
+        }).build()
+    ).toPromise();
+    console.log(t);
   }
 
   private async testProtectedApi() {
