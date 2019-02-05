@@ -3,7 +3,7 @@ import {Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {HomePage} from '../pages/home/home';
-import {ApiService, HttpRequestType, Request} from 'sunbird-sdk';
+import {ApiService, HttpRequestType, Request, PageAssembleService, PageName, PageAssembleCriteria} from 'sunbird-sdk';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +15,8 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    @Inject('API_SERVICE') private apiService: ApiService
+    @Inject('API_SERVICE') private apiService: ApiService,
+    @Inject('PAGE_ASSEMBLE_SERVICE') private pageService: PageAssembleService,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -28,6 +29,8 @@ export class MyApp {
       this.testProtectedApi();
       // this.testApiCall();
     }, 2000);
+
+    
   }
 
   private async testProtectedApi() {

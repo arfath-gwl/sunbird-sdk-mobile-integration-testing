@@ -18,6 +18,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'API_SERVICE',
     useFactory: () => SunbirdSdk.instance.apiService
+  }, {
+    provide: 'PAGE_ASSEMBLE_SERVICE',
+    useFactory: () => SunbirdSdk.instance.pageAssembleService
   }];
 };
 
@@ -37,7 +40,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           debugMode: true,
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
-            redirectUrl: 'org.sunbird.app.dev://mobile',
+            redirectUrl: 'staging.diksha.app://mobile',
             logoutUrl: '',
             authUrl: ''
           },
