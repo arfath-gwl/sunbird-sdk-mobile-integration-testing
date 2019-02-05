@@ -10,6 +10,9 @@
     <ion-title>db</ion-title>
   </ion-navbar>
 
+  <ion-content>
+    {{entries | json}}
+  </ion-content>
 </ion-header>
 
 
@@ -18,4 +21,5 @@
   <button ion-button color="primary" block (click)="onClicktoCreateDummyEntry()">create dummy entry</button>
   <button ion-button color="primary" full (click)="onClicktoDeleteEntryWithId1()">delete dummy entry</button>
   <button ion-button color="primary" full (click)="onClicktoDeleteAllEntries()">delete all dummy entries</button>
+  <button ion-button color="primary" full (click)="onClicktoGetAllEntries()">get all dummy entries</button>
 </ion-content>

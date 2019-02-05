@@ -15,6 +15,8 @@ import {DbService} from 'sunbird-sdk';
 })
 export class DbPage {
 
+  public entries: string;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               @Inject('DB_SERVICE') private dbService: DbService) {
@@ -49,6 +51,15 @@ export class DbPage {
     this.dbService.execute('DELETE FROM dummy').subscribe(() => {
 
     });
+  }
+
+  onClicktoGetAllEntries() {
+    this.dbService.read({table: 'dummy'}).subscribe((v) => {
+      console.log(v);
+      this.entries = JSON.stringify(v);
+    }, (e) => {
+      console.log(e);
+    })
   }
 
 }
