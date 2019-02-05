@@ -8,6 +8,7 @@ import {HomePage} from '../pages/home/home';
 import {SunbirdSdk} from 'sunbird-sdk';
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {ProfilePage} from '../pages/profile/profile';
+import {DbPage} from '../pages/db/db';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -96,7 +97,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
   declarations: [
     MyApp,
     HomePage,
-    ProfilePage
+    ProfilePage,
+    DbPage
   ],
   imports: [
     BrowserModule,
