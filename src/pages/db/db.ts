@@ -62,4 +62,13 @@ export class DbPage {
     })
   }
 
+  onClicktoUpdateEntryWithId5() {
+    this.dbService.update({
+      table: 'dummy',
+      selection: 'id = ?',
+      selectionArgs: ['5'],
+      modelJson: {name: 'ahmed_updated'}
+    });
+  }
+
 }
