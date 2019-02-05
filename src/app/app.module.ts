@@ -12,6 +12,9 @@ import {DbPage} from '../pages/db/db';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
+    provide: 'DB_SERVICE',
+    useFactory: () => SunbirdSdk.instance.dbService
+  }, {
     provide: 'COURSE_SERVICE',
     useFactory: () => SunbirdSdk.instance.courseService
   }, {
@@ -108,7 +111,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
   entryComponents: [
     MyApp,
     HomePage,
-    ProfilePage
+    ProfilePage,
+    DbPage
   ],
   providers: [
     StatusBar,

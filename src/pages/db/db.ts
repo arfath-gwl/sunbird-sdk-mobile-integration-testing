@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, Inject} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {DbService} from 'sunbird-sdk';
 
 /**
  * Generated class for the DbPage page.
@@ -8,18 +9,46 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-db',
   templateUrl: 'db.html',
 })
 export class DbPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              @Inject('DB_SERVICE') private dbService: DbService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DbPage');
+  }
+
+  onClicktoCreateDummyTable() {
+    this.dbService.execute('CREATE TABLE dummy(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)').subscribe(() => {
+
+    });
+  }
+
+  onClicktoCreateDummyEntry() {
+    this.dbService.execute('INSERT INTO dummy(name) VALUES("ahmed")').subscribe(() => {
+
+    });
+  }
+
+  onClicktoDeleteEntryWithId1() {
+    this.dbService.delete({
+      table: 'dummy',
+      selection: 'id = ? AND name = ?',
+      selectionArgs: ['1', 'ahmed']
+    }).subscribe(() => {
+
+    });
+  }
+
+  onClicktoDeleteAllEntries() {
+    this.dbService.execute('DELETE FROM dummy').subscribe(() => {
+
+    });
   }
 
 }
