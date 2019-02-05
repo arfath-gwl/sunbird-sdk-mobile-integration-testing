@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {ApiService, HttpRequestType, Request, PageAssembleService, PageName, PageAssembleCriteria} from 'sunbird-sdk';
 import {ProfilePage} from "../profile/profile";
+import { FrameworkPage } from '../framework/framework';
 
 
 @Component({
@@ -34,5 +35,8 @@ export class HomePage {
 
   goToProfilePage() {
     this.navCtrl.push(ProfilePage);
+  }
+  goToFrameworkPage() {
+    this.navCtrl.push(FrameworkPage);
   }
 }

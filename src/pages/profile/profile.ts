@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {IonicPage} from 'ionic-angular';
 import {
   Profile,
-  ProfileRequest,
+  GetAllProfileRequest,
   ProfileService,
   ProfileSource,
   ProfileType,
@@ -58,7 +58,7 @@ export class ProfilePage {
   }
 
   getAllProfile() {
-    const request: ProfileRequest = {
+    const request: GetAllProfileRequest = {
       local: true,
       server: true,
       groupId: 'group1'
