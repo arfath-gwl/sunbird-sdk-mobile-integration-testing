@@ -7,6 +7,7 @@ import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {SunbirdSdk} from 'sunbird-sdk';
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
+import {ProfilePage} from '../pages/profile/profile';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -18,6 +19,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'API_SERVICE',
     useFactory: () => SunbirdSdk.instance.apiService
+  }, {
+    provide: 'PROFILE_SERVICE',
+    useFactory: () => SunbirdSdk.instance.profileService
   }];
 };
 
@@ -91,7 +95,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -100,7 +105,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

@@ -9,13 +9,15 @@ import {ApiService, HttpRequestType, Request} from 'sunbird-sdk';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage: any = HomePage;
+  profile: any = {};
+  phone: string;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    @Inject('API_SERVICE') private apiService: ApiService
+    @Inject('API_SERVICE') private apiService: ApiService,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -26,8 +28,24 @@ export class MyApp {
 
     setTimeout(() => {
       this.testProtectedApi();
-      // this.testApiCall();
+      this.testProfileServiceApi();
+      this.testApiCall();
     }, 2000);
+  }
+
+  private async testProfileServiceApi() {
+    const t = await this.apiService.fetch(
+      new Request.Builder()
+        .withType(HttpRequestType.PATCH)
+        .withPath('/user/v1/update')
+        .withBody({
+          "id": "api.user.update",
+          "ver": "v1",
+          "userId": "profile1",
+          "phone": "9862210367"
+        }).build()
+    ).toPromise();
+    console.log(t);
   }
 
   private async testProtectedApi() {
