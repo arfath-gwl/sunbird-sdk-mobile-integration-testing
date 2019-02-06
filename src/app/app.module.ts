@@ -48,7 +48,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
       await SunbirdSdk.instance.init({
         apiConfig: {
           debugMode: true,
-          baseUrl: 'https://staging.open-sunbird.org/api',
+          baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'org.sunbird.app.dev://mobile',
             logoutUrl: '',
