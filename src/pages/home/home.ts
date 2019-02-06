@@ -5,8 +5,10 @@ import {DbPage} from '../db/db';
 import {ApiPage} from '../api/api';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService, SessionProvider} from 'sunbird-sdk';
+import GroupPage from '../group/group';
 
 declare const escape;
+
 
 @Component({
   selector: 'page-home',
@@ -44,6 +46,10 @@ export class HomePage {
   goToApiPage() {
     this.navCtrl.push(ApiPage);
   }
+
+  goTOgroupPage(){
+    this.navCtrl.push(GroupPage);
+  }
 }
 
 class DebugSessionProvider implements SessionProvider {
@@ -68,4 +74,6 @@ class DebugSessionProvider implements SessionProvider {
       userToken: uid
     }
   }
+
+
 }

@@ -11,6 +11,7 @@ import {ProfilePage} from '../pages/profile/profile';
 import {DbPage} from '../pages/db/db';
 import {ApiPage} from '../pages/api/api';
 import {ReactiveFormsModule} from '@angular/forms';
+import GroupPage from '../pages/group/group';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -28,6 +29,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'API_SERVICE',
     useFactory: () => SunbirdSdk.instance.apiService
+  }, {
+    provide: 'GROUP_SERVICE',
+    useFactory: () => SunbirdSdk.instance.groupService
   }, {
     provide: 'PROFILE_SERVICE',
     useFactory: () => SunbirdSdk.instance.profileService
@@ -107,7 +111,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     HomePage,
     ProfilePage,
     DbPage,
-    ApiPage
+    ApiPage,
+    GroupPage
   ],
   imports: [
     BrowserModule,
@@ -120,7 +125,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     HomePage,
     ProfilePage,
     DbPage,
-    ApiPage
+    ApiPage,
+    GroupPage
   ],
   providers: [
     StatusBar,
