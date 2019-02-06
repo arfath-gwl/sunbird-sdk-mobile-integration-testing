@@ -9,9 +9,14 @@ import {SunbirdSdk} from 'sunbird-sdk';
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {ProfilePage} from '../pages/profile/profile';
 import {DbPage} from '../pages/db/db';
+import {ApiPage} from '../pages/api/api';
+import {ReactiveFormsModule} from '@angular/forms';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
+    provide: 'AUTH_SERVICE',
+    useFactory: () => SunbirdSdk.instance.authService
+  }, {
     provide: 'DB_SERVICE',
     useFactory: () => SunbirdSdk.instance.dbService
   }, {
@@ -42,8 +47,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         apiConfig: {
-          debugMode: false,
-          baseUrl: 'https://staging.ntp.net.in/api',
+          debugMode: true,
+          baseUrl: 'https://staging.open-sunbird.org/api',
           user_authentication: {
             redirectUrl: 'org.sunbird.app.dev://mobile',
             logoutUrl: '',
@@ -62,7 +67,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: false,
+          debugMode: true,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
@@ -101,10 +106,12 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     MyApp,
     HomePage,
     ProfilePage,
-    DbPage
+    DbPage,
+    ApiPage
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -112,7 +119,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     MyApp,
     HomePage,
     ProfilePage,
-    DbPage
+    DbPage,
+    ApiPage
   ],
   providers: [
     StatusBar,

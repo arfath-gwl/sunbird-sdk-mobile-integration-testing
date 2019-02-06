@@ -59,6 +59,7 @@
   },
   "description": "An Ionic project",
   "config": {
+    "ionic_watch": "./config/watch.config.js",
     "ionic_bundler": "webpack",
     "ionic_source_map_type": "inline-source-map",
     "ionic_generate_source_map": "true"
