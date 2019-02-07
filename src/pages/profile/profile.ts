@@ -37,8 +37,9 @@ export class ProfilePage {
       source: ProfileSource.LOCAL,
       subject: ['eng', 'maths'],
       syllabus: ["1oth"],
-      grade_value: []
-    }
+      grade_value: {}
+    };
+
     this.profileService.createProfile(req).toPromise().then((res: any) => {
       console.log('CreatedProfile?--', res);
     }).catch((err: any) => {
