@@ -12,6 +12,7 @@ import {DbPage} from '../pages/db/db';
 import {ApiPage} from '../pages/api/api';
 import {ReactiveFormsModule} from '@angular/forms';
 import GroupPage from '../pages/group/group';
+import {CoursePage} from "../pages/course/course";
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -54,13 +55,13 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         apiConfig: {
-          debugMode: true,
+          debugMode: false,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'org.sunbird.app.dev://mobile',
             logoutUrl: '',
-            authUrl: ''
+            authUrl: '/auth/realms/sunbird/protocol/openid-connect/token'
           },
           api_authentication: {
             mobileAppKey: 'sunbird-0.1',
@@ -75,7 +76,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: true,
+          debugMode: false,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
@@ -116,7 +117,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     ProfilePage,
     DbPage,
     ApiPage,
-    GroupPage
+    GroupPage,
+    ApiPage,
+    CoursePage
   ],
   imports: [
     BrowserModule,
@@ -130,7 +133,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     ProfilePage,
     DbPage,
     ApiPage,
-    GroupPage
+    GroupPage,
+    ApiPage,
+    CoursePage
   ],
   providers: [
     StatusBar,
