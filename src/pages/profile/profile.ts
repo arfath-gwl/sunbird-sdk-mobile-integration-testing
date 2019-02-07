@@ -27,8 +27,8 @@ export class ProfilePage {
 
   createProfile() {
     const req: Profile = {
-      uid: '',
-      handle: 'Shuvranil',
+      uid: '1235',
+      handle: 'Hello',
       board: ['cbse', 'icse', 'bhojpuri'],
       createdAt: Date.now(),
       grade: ['72', '77'],
@@ -37,8 +37,9 @@ export class ProfilePage {
       source: ProfileSource.SERVER,
       subject: ['eng', 'maths'],
       syllabus: ["1oth"],
-      gradeValue: {'key': 'A+'}
+      gradeValue: {}
     };
+
     this.profileService.createProfile(req).toPromise().then((res: any) => {
       console.log('CreatedProfile?--', res);
     }).catch((err: any) => {
@@ -46,8 +47,8 @@ export class ProfilePage {
     })
   }
 
-  deleteProfile() {
-    let uid = '0286aa65-7519-479e-8ead-7784883d2d86';
+  deleteProfileWithUID() {
+    let uid = '45359cbb-c513-4913-9ab6-1d7da75d536f';
     this.profileService.deleteProfile(uid).toPromise().then((result: any) => {
       console.log('successfully deleted.', result);
     }).catch((error: any) => {
@@ -55,42 +56,11 @@ export class ProfilePage {
     })
   }
 
-  updateServerProfiles() {
-    const request: UpdateServerProfileInfoRequest = {
-      userId: 'd60b31bd-089c-4e9a-87ec-1bf859284964',
-      phone: '9019720923'
-    };
-    this.profileService.updateServerProfile(request).toPromise().then((result: any) => {
-      console.log('profile updated', result);
-    }).catch((error: any) => {
-      console.log('could not updated', error);
-    });
-  }
-
-  // getServerProfiles() {
-  //   const request: ServerProfileSearchCriteria = {
-  //     query: 'user',
-  //     identifiers: ['659b011a-06ec-4107-84ad-955e16b0a48a'],
-  //     fields: ['identifier', 'lastName', 'firstName'],
-  //     offset: 0,
-  //     limit: 10
-  //   };
-  //   this.profileService.getServerProfiles(request).toPromise().then((result: any) => {
-  //     console.log('ServerProfileSearchCriteria--', result);
-  //   }).catch((err: any) => {
-  //     console.log('error while searching server Profiles', err);
-  //   })
-  // }
-
-  getTenantInfo() {
-    // TODO
-  }
-
-  getAllProfile() {
+  getAllProfiles() {
     const request: GetAllProfileRequest = {
       local: true,
-      server: true,
-      groupId: 'group1'
+      server: false,
+      groupId: '22dba91b-e3e5-42d9-92cd-890380206edd'
     };
     this.profileService.getAllProfiles(request).toPromise().then((success: any) => {
       console.log('successfully got all profiles', success)
@@ -99,22 +69,9 @@ export class ProfilePage {
     })
   }
 
-  getServerProfilesDetails() {
-    // TODO
-  }
-
-  setCurrentProfile() {
-    let uid = 'd60b31bd-089c-4e9a-87ec-1bf859284964';
-    this.profileService.setCurrentProfile(uid).toPromise().then((res: any) => {
-      console.log('set Current Profile--', res);
-    }).catch((err: any) => {
-      console.log('err while setting current profile', err);
-    });
-  }
-
   getCurrentProfile() {
-    this.profileService.getCurrentProfile().toPromise().then((result: any) => {
-      console.log('getCurrentProfile', result);
+    this.profileService.getCurrentProfileSession().toPromise().then((result: any) => {
+      console.log('getCurrentProfileSession', result);
     }).catch((error: any) => {
       console.log('error', error);
     })
