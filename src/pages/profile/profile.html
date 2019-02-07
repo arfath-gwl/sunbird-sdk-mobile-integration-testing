@@ -16,7 +16,11 @@
 <ion-content padding>
   <button ion-button color="secondary" block (click)="createProfile()">PROFILE</button>
   <button ion-button color="danger" block (click)="deleteProfile()">DELETE</button>
-  <button ion-button color="primary" full (click)="getAllProfile()">Get All Profile</button>
-  <button ion-button color="dark" block (click)="getCurrentProfile()">Get Current Profile Session</button>
-  <button ion-button color="secondary" block (click)="updateServerProfile()">UpdateServerProfile</button>
+  <button ion-button color="primary" block (click)="updateServerProfiles()">Update Server Profile</button>
+  <button ion-button color="secondary" block (click)="getServerProfiles()">Get Server Profile</button>
+  <button ion-button color="primary" block (click)="getTenantInfo()">Get Tenant Info</button>
+  <button ion-button color="secondary" full (click)="getAllProfile()">Get All Profile</button>
+  <button ion-button color="primary" block (click)="getServerProfilesDetails()">Get Server Profile Details</button>
+  <button ion-button color="light" block (click)="setCurrentProfile()">Set Current Profile</button>
+  <button ion-button color="dark" block (click)="getCurrentProfile()">Get Current Profile</button>
 </ion-content>
