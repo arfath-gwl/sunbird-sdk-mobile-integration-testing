@@ -15,6 +15,9 @@ import GroupPage from '../pages/group/group';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
+    provide: 'SDK_CONFIG',
+    useFactory: () => SunbirdSdk.instance.authService
+  }, {
     provide: 'AUTH_SERVICE',
     useFactory: () => SunbirdSdk.instance.authService
   }, {
@@ -52,6 +55,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
       await SunbirdSdk.instance.init({
         apiConfig: {
           debugMode: true,
+          host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'org.sunbird.app.dev://mobile',
