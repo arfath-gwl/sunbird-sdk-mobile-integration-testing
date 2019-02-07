@@ -86,5 +86,12 @@
     <plugin name="cordova-plugin-advanced-http" spec="2.0.4" />
     <plugin name="sb-cordova-plugin-db" spec="git+https://github.com/swayangjit/sb-cordova-plugin-db.git" />
   <plugin name="com.outsystems.mobile.stetho" spec="~0.0.1"/>
+  <plugin name="cordova-android-support-gradle-release" spec="^2.0.1">
+    <variable name="ANDROID_SUPPORT_VERSION" value="27.+"/>
+  </plugin>
+  <plugin name="cordova-plugin-customtabs" spec="https://github.com/souvikmondal/cordova-plugin-customtabs.git">
+    <variable name="URL_SCHEME" value="org.sunbird.ntp.net.in"/>
+    <variable name="URL_HOST" value="mobile"/>
+  </plugin>
   <engine name="android" spec="~7.1.4"/>
 </widget>

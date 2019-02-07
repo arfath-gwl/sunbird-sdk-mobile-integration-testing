@@ -59,9 +59,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
-            redirectUrl: 'org.sunbird.app.dev://mobile',
+            redirectUrl: 'staging.diksha.app://mobile',
             logoutUrl: '',
-            authUrl: '/auth/realms/sunbird/protocol/openid-connect/token'
+            authUrl: '/auth/realms/sunbird/protocol/openid-connect/auth'
           },
           api_authentication: {
             mobileAppKey: 'sunbird-0.1',
