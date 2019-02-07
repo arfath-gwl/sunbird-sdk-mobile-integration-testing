@@ -25,8 +25,8 @@ export class HomePage {
     this.loginForm = new FormGroup({
       'client_id': new FormControl('admin-cli'),
       'grant_type': new FormControl('password'),
-      'username': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required)
+      'username': new FormControl('ntptest12', Validators.required),
+      'password': new FormControl('password', Validators.required)
     })
   }
 
