@@ -10,7 +10,6 @@ import { CourseService } from 'sunbird-sdk'
  * Ionic pages and navigation.
  */
 
-
 @Component({
   selector: 'page-course',
   templateUrl: 'course.html',
