@@ -61,7 +61,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           user_authentication: {
             redirectUrl: 'staging.diksha.app://mobile',
             logoutUrl: '',
-            authUrl: '/auth/realms/sunbird/protocol/openid-connect/auth'
+            authUrl: '/auth/realms/sunbird/protocol/openid-connect'
           },
           api_authentication: {
             mobileAppKey: 'sunbird-0.1',

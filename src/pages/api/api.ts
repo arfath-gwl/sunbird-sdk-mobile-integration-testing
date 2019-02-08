@@ -26,7 +26,7 @@ export class ApiPage {
   public onClickToInvokeUnprotectedApi() {
     const request = new Request.Builder()
       .withType(HttpRequestType.POST)
-      .withPath('/data/v1/page/assemble')
+      .withPath('/api/data/v1/page/assemble')
       .withBody({
         "request": {
           "source": "web",
@@ -71,7 +71,7 @@ export class ApiPage {
     const request = new Request.Builder()
       .withApiToken(true)
       .withType(HttpRequestType.POST)
-      .withPath('/data/v1/telemetry')
+      .withPath('/api/data/v1/telemetry')
       .withBody({
         "id": "ekstep.telemetry",
         "ver": "2.0",
@@ -137,7 +137,7 @@ export class ApiPage {
       .withApiToken(true)
       .withSessionToken(true)
       .withType(HttpRequestType.POST)
-      .withPath('/user/v1/search')
+      .withPath('/api/user/v1/search')
       .withBody({
         "id": "unique API ID",
         "ts": "2013/10/15 16:16:39",
