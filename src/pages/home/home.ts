@@ -4,14 +4,13 @@ import {ProfilePage} from "../profile/profile";
 import {DbPage} from '../db/db';
 import {ApiPage} from '../api/api';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService, SdkConfig, SessionProvider} from 'sunbird-sdk';
+import {ApiService, AuthService, OAuthSessionProvider, SdkConfig, SessionProvider} from 'sunbird-sdk';
 import GroupPage from '../group/group';
+import {CoursePage} from "../course/course";
 import axios, {AxiosStatic} from 'axios';
 import qs from 'qs';
-import { CoursePage } from '../course/course';
 
 declare const escape;
-
 
 @Component({
   selector: 'page-home',
@@ -21,6 +20,7 @@ export class HomePage {
   public loginForm: FormGroup;
 
   constructor(public navCtrl: NavController,
+              @Inject('API_SERVICE') private apiService: ApiService,
               @Inject('SDK_CONFIG') private sdkConfig: SdkConfig,
               @Inject('AUTH_SERVICE') private authService: AuthService) {
     this.loginForm = new FormGroup({
@@ -39,8 +39,18 @@ export class HomePage {
       });
   }
 
+  onOAuthLoginClick() {
+    this.authService.setSession(new OAuthSessionProvider(this.sdkConfig.apiConfig, this.apiService))
+      .mergeMap(() => this.authService.getSession())
+      .subscribe((v) => {
+        console.log(v);
+      });
+  }
+
   goToProfilePage() {
-    this.navCtrl.push(ProfilePage);
+    this.navCtrl.push(ProfilePage).then((success: any) => {
+    }).catch((error: any) => {
+    })
   }
 
   goToDbPage() {
@@ -51,10 +61,10 @@ export class HomePage {
     this.navCtrl.push(ApiPage);
   }
 
-  goTOgroupPage(){
+  goTOgroupPage() {
     this.navCtrl.push(GroupPage);
   }
-  goTOCoursePage(){
+  goToCoursePage(){
     this.navCtrl.push(CoursePage);
   }
 }
@@ -90,6 +100,4 @@ class DebugSessionProvider implements SessionProvider {
       userToken: uid
     }
   }
-
-
 }

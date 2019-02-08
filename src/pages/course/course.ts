@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CourseService } from 'sunbird-sdk'
 
+
 /**
  * Generated class for the CoursePage page.
  *
@@ -19,8 +20,7 @@ export class CoursePage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     @Inject('COURSE_SERVICE') private courseService: CourseService) {
-  }
-
+    }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CoursePage');
   }

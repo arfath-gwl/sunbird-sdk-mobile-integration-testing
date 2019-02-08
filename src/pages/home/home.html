@@ -21,13 +21,13 @@
       </ion-item>
 
       <button ion-button type="submit" block>Login</button>
-
+      <button ion-button (click)="onOAuthLoginClick()" type="button" block>OAuth Login</button>
     </ion-list>
   </form>
 
-  <button ion-button color="secondary" block (click)="goToProfilePage()">Go To Profile Page</button>
+  <button ion-button color="dark" block (click)="goToProfilePage()">Go To Profile Page</button>
   <button ion-button color="secondary" block (click)="goToDbPage()">Go To Db Page</button>
   <button ion-button color="secondary" block (click)="goToApiPage()">Go To Api Page</button>
   <button ion-button color="secondary" block (click)="goTOgroupPage()">GO TO Group Page</button>
-  <button ion-button color="secondary" block (click)="goTOCoursePage()">GO TO Course Page</button>
+  <button ion-button color="primary" block (click)="goToCoursePage()">Go To Course Page</button>
 </ion-content>
