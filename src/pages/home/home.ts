@@ -8,6 +8,7 @@ import {AuthService, SdkConfig, SessionProvider} from 'sunbird-sdk';
 import GroupPage from '../group/group';
 import axios, {AxiosStatic} from 'axios';
 import qs from 'qs';
+import { CoursePage } from '../course/course';
 
 declare const escape;
 
@@ -52,6 +53,9 @@ export class HomePage {
 
   goTOgroupPage(){
     this.navCtrl.push(GroupPage);
+  }
+  goTOCoursePage(){
+    this.navCtrl.push(CoursePage);
   }
 }
 
