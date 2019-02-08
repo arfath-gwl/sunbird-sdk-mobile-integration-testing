@@ -12,7 +12,7 @@ import {DbPage} from '../pages/db/db';
 import {ApiPage} from '../pages/api/api';
 import {ReactiveFormsModule} from '@angular/forms';
 import GroupPage from '../pages/group/group';
-import {CoursePage} from "../pages/course/course";
+import {CoursePage} from '../pages/course/course';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -118,7 +118,6 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     DbPage,
     ApiPage,
     GroupPage,
-    ApiPage,
     CoursePage
   ],
   imports: [
@@ -134,7 +133,6 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     DbPage,
     ApiPage,
     GroupPage,
-    ApiPage,
     CoursePage
   ],
   providers: [

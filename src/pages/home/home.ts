@@ -64,13 +64,8 @@ export class HomePage {
   goTOgroupPage() {
     this.navCtrl.push(GroupPage);
   }
-
-  goToCoursePage() {
-    this.navCtrl.push(CoursePage).then((success: any) => {
-
-    }).catch((error: any) => {
-
-    })
+  goToCoursePage(){
+    this.navCtrl.push(CoursePage);
   }
 }
 

@@ -69,25 +69,9 @@ export class ProfilePage {
     })
   }
 
-  setCurrentProfileWithId() {
-    this.profileService.setCurrentProfile('71446508-45d7-4a92-899f-29e8a2c746d6').toPromise().then((result: any) => {
-      console.log(result)
-    }).catch((error: any) => {
-      console.log('error', error);
-    })
-  }
-
-  getCurrentProfileSession() {
+  getCurrentProfile() {
     this.profileService.getCurrentProfileSession().toPromise().then((result: any) => {
       console.log('getCurrentProfileSession', result);
-    }).catch((error: any) => {
-      console.log('error', error);
-    })
-  }
-
-  getCurrentProfile() {
-    this.profileService.getCurrentProfile().toPromise().then((result: any) => {
-      console.log('getCurrentProfile', result);
     }).catch((error: any) => {
       console.log('error', error);
     })
@@ -97,6 +81,7 @@ export class ProfilePage {
     const request: UpdateServerProfileInfoRequest = {
       userId: 'dummyId',
       phone: '911'
+
     };
     this.profileService.updateServerProfile(request).toPromise().then((result: any) => {
       console.log('success while updating', result);
