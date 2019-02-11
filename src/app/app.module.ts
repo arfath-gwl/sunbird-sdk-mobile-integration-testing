@@ -83,7 +83,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
             mobileAppSecret: 'eab91d5404434800b81996c1cd699d19',
             mobileAppConsumer: 'mobile_device',
             channelId: '505c7c48ac6dc1edc9b08f21db5a571d',
-            producerId: 'dev.sunbird.app',
+            producerId: 'staging.diksha.app',
             deviceId: deviceId
           },
           cached_requests: {
