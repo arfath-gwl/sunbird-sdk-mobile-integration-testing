@@ -1,8 +1,7 @@
 import {Component, Inject} from '@angular/core';
-import {IonicPage} from 'ionic-angular';
 import {
-  Profile,
   GetAllProfileRequest,
+  Profile,
   ProfileService,
   ProfileSource,
   ProfileType,
@@ -16,7 +15,6 @@ import {
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
@@ -32,15 +30,16 @@ export class ProfilePage {
       uid: '1235',
       handle: 'Hello',
       board: ['cbse', 'icse', 'bhojpuri'],
-      created_at: Date.now(),
+      createdAt: Date.now(),
       grade: ['72', '77'],
       medium: ['ENGLISH'],
-      profile_type: ProfileType.TEACHER,
+      profileType: ProfileType.TEACHER,
       source: ProfileSource.LOCAL,
       subject: ['eng', 'maths'],
       syllabus: ["1oth"],
-      grade_value: []
-    }
+      gradeValue: {}
+    };
+
     this.profileService.createProfile(req).toPromise().then((res: any) => {
       console.log('CreatedProfile?--', res);
     }).catch((err: any) => {
@@ -63,7 +62,7 @@ export class ProfilePage {
       server: true,
       groupId: 'group1'
     };
-    this.profileService.getAllProfiles(request).toPromise().then((success: any) => {
+    this.profileService.getAllProfiles().toPromise().then((success: any) => {
       console.log('successfully got all profiles', success)
     }).catch((error: any) => {
       console.log('error while getting all profiles', error);

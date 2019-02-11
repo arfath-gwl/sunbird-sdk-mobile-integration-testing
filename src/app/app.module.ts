@@ -9,9 +9,23 @@ import {SunbirdSdk} from 'sunbird-sdk';
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {ProfilePage} from '../pages/profile/profile';
 import { FrameworkPage } from '../pages/framework/framework';
+import {DbPage} from '../pages/db/db';
+import {ApiPage} from '../pages/api/api';
+import {ReactiveFormsModule} from '@angular/forms';
+import GroupPage from '../pages/group/group';
+import { File } from '@ionic-native/file';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
+    provide: 'SDK_CONFIG',
+    useFactory: () => SunbirdSdk.instance.authService
+  }, {
+    provide: 'AUTH_SERVICE',
+    useFactory: () => SunbirdSdk.instance.authService
+  }, {
+    provide: 'DB_SERVICE',
+    useFactory: () => SunbirdSdk.instance.dbService
+  }, {
     provide: 'COURSE_SERVICE',
     useFactory: () => SunbirdSdk.instance.courseService
   }, {
@@ -24,11 +38,17 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
     provide: 'PAGE_ASSEMBLE_SERVICE',
     useFactory: () => SunbirdSdk.instance.pageAssembleService
   }, {
+    provide: 'GROUP_SERVICE',
+    useFactory: () => SunbirdSdk.instance.groupService
+  }, {
     provide: 'PROFILE_SERVICE',
     useFactory: () => SunbirdSdk.instance.profileService
   }, {
     provide: 'DB_SERVICE',
     useFactory: () => SunbirdSdk.instance.dbService
+  }, {
+    provide: 'FRAMEWORK_SERVICE',
+    useFactory: () => SunbirdSdk.instance.frameworkService
   }];
 };
 
@@ -45,7 +65,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         apiConfig: {
-          debugMode: false,
+          debugMode: true,
+          host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'staging.diksha.app://mobile',
@@ -65,7 +86,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: false,
+          debugMode: true,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
@@ -79,9 +100,10 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           formFilePath: ''
         },
         frameworkServiceConfig: {
-          apiPath: '',
-          frameworkConfigFilePaths: [],
-          channelConfigFilePath: ''
+          channelApiPath: '/api/channel/v1',
+          frameworkApiPath: '/api/framework/v1',
+          frameworkConfigFilePaths: ['file:///android_asset/www/assets/data/framework/framework-ap_k-12_13.json'],
+          channelConfigFilePath: 'file:///android_asset/www/assets/data/channel/channel-b00bc992ef25f1a9a8d63291e20efc8d.json'
         },
         profileServiceConfig: {
           apiPath: '',
@@ -104,10 +126,14 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     MyApp,
     HomePage,
     ProfilePage,
-    FrameworkPage
+    FrameworkPage,
+    DbPage,
+    ApiPage,
+    GroupPage
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -115,15 +141,20 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     MyApp,
     HomePage,
     ProfilePage,
-    FrameworkPage
+    FrameworkPage,
+    DbPage,
+    ApiPage,
+    GroupPage
   ],
   providers: [
+    File,
     StatusBar,
     SplashScreen,
     UniqueDeviceID,
     ...sunbirdSdkServicesProvidersFactory(),
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [UniqueDeviceID, Platform], multi: true}
+    
   ]
 })
 export class AppModule {

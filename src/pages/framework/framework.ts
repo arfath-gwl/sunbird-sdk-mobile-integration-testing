@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ApiService, HttpRequestType, Request, UpdateQuery, PageAssembleService, PageName, PageAssembleCriteria, DbService, InsertQuery, ReadQuery } from 'sunbird-sdk';
-
+import { ApiService, HttpRequestType, Request, UpdateQuery, PageAssembleService, PageName,
+   PageAssembleCriteria, DbService, InsertQuery, ReadQuery, FrameworkService,
+    ChannelDetailsRequest, FrameworkDetailsRequest } from 'sunbird-sdk';
+import { File } from '@ionic-native/file';
 @Component({
   selector: 'page-framework',
   templateUrl: 'framework.html'
@@ -12,32 +14,43 @@ export class FrameworkPage {
     public navCtrl: NavController,
     @Inject('PAGE_ASSEMBLE_SERVICE') private pageService: PageAssembleService,
     @Inject('DB_SERVICE') private dbService: DbService,
+    @Inject('FRAMEWORK_SERVICE') private frameworkService: FrameworkService,
+    private file: File
   ) {
 
   }
-  callApi() {
-    // this.callUpdateApi();
-    this.callReadApi();
-    // this.callInsertApi();
-  }
-  callInsertApi() {
-    console.log('callInsertApi called');
-    const insertQuery: InsertQuery = {
-      modelJson: {
-        email: 'abs@abc1.com',
-        fullName: 'Guest1',
-        phone: 1234567891
-      },
-      table: 'test'
-    };
+  ionViewDidLoad(){
+    console.log(this.file);
+    this.file.checkDir(this.file.applicationDirectory, 'www/assets/data/channel').then(file => 
+      console.log('Directory exists')
+   ).catch(err => console.log('Directory doesnt exist'));
 
-    this.dbService.insert(insertQuery).subscribe((res: any) => {
-      // res = JSON.parse(res);
-      console.log('callInsertApi success', res);
-    }, (err) => {
-      console.log('callInsertApi err', err);
-    });
-  };
+  }
+  
+  getChannelDetails() {
+    console.log('in getChanneleDetails');
+    const channelDetailsRequest: ChannelDetailsRequest = {
+      channelId : 'b00bc992ef25f1a9a8d63291e20efc8d'
+    }
+    this.frameworkService.getChannelDetails(channelDetailsRequest).subscribe( res => {
+      console.log('getChannelDetails res', res);
+    }, err => {
+      console.log('err', err);
+    })
+  }
+
+  getFrameworkDetaisl() {
+    console.log('in getFrameworkDetaisl');
+    const frameworkDetailsRequest: FrameworkDetailsRequest = {
+      frameworkId : 'ap_k-12_13'
+    }
+    this.frameworkService.getFrameworkDetails(frameworkDetailsRequest).subscribe( res => {
+      console.log('getFrameworkDetaisl res', res);
+    }, err => {
+      console.log('getFrameworkDetaisl err', err);
+    })
+  }
+
   // db.read(readQuery.distinct!!,
   //     readQuery.table,
   //     readQuery.columns!,
@@ -71,24 +84,6 @@ export class FrameworkPage {
     });
   };
 
-  callUpdateApi() {
-    console.log('callUpdateApi called');
-    const updateQuery: UpdateQuery = {
-      table: 'test',
-      selection: 'email = ?',
-      selectionArgs: ['abs@abc2.com'],
-      modelJson : {
-        phone: 1234567811,
-        fullName: 'changedName'
-      }
-    };
-
-    this.dbService.update(updateQuery).subscribe((res: any) => {
-      // res = JSON.parse(res);
-      console.log('callUpdateApi success', res);
-    }, (err) => {
-      console.log('callUpdateApi err', err);
-    });
-  };
+  
 
 }
