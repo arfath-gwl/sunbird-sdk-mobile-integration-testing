@@ -115,7 +115,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           searchProfilePath: ''
         },
         pageServiceConfig: {
-          apiPath: '/api/data/v1/page/',
+          apiPath: '/api/data/v1',
           filePath: 'file:///android_asset/www/assets/data/channel/pageassemble_course_filter.json'
         },
         appConfig: {
