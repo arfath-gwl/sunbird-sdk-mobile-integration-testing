@@ -39,15 +39,15 @@ export class FrameworkPage {
     })
   }
 
-  getFrameworkDetaisl() {
-    console.log('in getFrameworkDetaisl');
+  getFrameworkDetails() {
+    console.log('in getFrameworkDetails');
     const frameworkDetailsRequest: FrameworkDetailsRequest = {
       frameworkId : 'ap_k-12_13'
     }
     this.frameworkService.getFrameworkDetails(frameworkDetailsRequest).subscribe( res => {
-      console.log('getFrameworkDetaisl res', res);
+      console.log('getFrameworkDetails res', res);
     }, err => {
-      console.log('getFrameworkDetaisl err', err);
+      console.log('getFrameworkDetails err', err);
     })
   }
 

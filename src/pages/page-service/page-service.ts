@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PageAssembleService, PageName } from 'sunbird-sdk';
+import { PageAssembleService, PageName, PageAssembleCriteria } from 'sunbird-sdk';
 
 /**
  * Generated class for the PageServicePage page.
@@ -25,9 +25,10 @@ export class PageServicePage {
     console.log('ionViewDidLoad PageServicePage');
   }
   getPageAssemble(){
-    const args = {
+    const args: PageAssembleCriteria= {
       name: PageName.RESOURCE,
-      source: "web",
+      mode: 'soft',
+      source: 'web',
       filters: {
         gradeLevel: [
           "Grade 1"
@@ -45,9 +46,9 @@ export class PageServicePage {
       }
     }
    this.pageAssembleService.getPageAssemble(args).subscribe((val) => {
-     console.log(val);
+     console.log('getPageAssemble resp', val);
    }, err => {
-     console.log("error:",err);
+     console.log("getPageAssemble error:",err);
    })
   }
 
