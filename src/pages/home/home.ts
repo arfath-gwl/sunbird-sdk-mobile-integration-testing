@@ -9,6 +9,7 @@ import GroupPage from '../group/group';
 import {CoursePage} from "../course/course";
 import axios, {AxiosStatic} from 'axios';
 import qs from 'qs';
+import { PageServicePage } from '../page-service/page-service';
 
 declare const escape;
 
@@ -67,7 +68,11 @@ export class HomePage {
   goToCoursePage(){
     this.navCtrl.push(CoursePage);
   }
+  goTOPageservicePage(){
+    this.navCtrl.push(PageServicePage);
+  }
 }
+
 
 class DebugSessionProvider implements SessionProvider {
   private static readonly LOGIN_PATH = '/auth/realms/sunbird/protocol/openid-connect/token';
