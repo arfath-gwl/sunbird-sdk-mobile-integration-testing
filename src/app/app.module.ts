@@ -12,7 +12,8 @@ import {DbPage} from '../pages/db/db';
 import {ApiPage} from '../pages/api/api';
 import {ReactiveFormsModule} from '@angular/forms';
 import GroupPage from '../pages/group/group';
-import {CoursePage} from '../pages/course/course';
+import {CoursePage} from "../pages/course/course";
+import {PageServicePage} from '../pages/page-service/page-service';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -39,6 +40,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'PROFILE_SERVICE',
     useFactory: () => SunbirdSdk.instance.profileService
+  }, {
+    provide: 'PAGE_ASSEMBLE_SERVICE',
+    useFactory: () => SunbirdSdk.instance.pageAssembleService
   }];
 };
 
@@ -55,13 +59,13 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         apiConfig: {
-          debugMode: false,
+          debugMode: true,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'staging.diksha.app://mobile',
             logoutUrl: '',
-            authUrl: '/auth/realms/sunbird/protocol/openid-connect'
+            authUrl: '/auth/realms/sunbird/protocol/openid-connect/auth'
           },
           api_authentication: {
             mobileAppKey: 'sunbird-0.1',
@@ -76,14 +80,14 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: false,
+          debugMode: true,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
           apiPath: ''
         },
         courseServiceConfig: {
-          apiPath: ''
+          apiPath: '/api/course/v1'
         },
         formServiceConfig: {
           apiPath: '',
@@ -99,8 +103,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           searchProfilePath: ''
         },
         pageServiceConfig: {
-          apiPath: '',
-          filePath: ''
+          apiPath: '/api/data/v1/page/',
+          filePath: 'file:///android_asset/www/assets/data/channel/pageassemble_course_filter.json'
         },
         appConfig: {
           maxCompatibilityLevel: 100,
@@ -118,7 +122,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     DbPage,
     ApiPage,
     GroupPage,
-    CoursePage
+    ApiPage,
+    CoursePage,
+    PageServicePage
   ],
   imports: [
     BrowserModule,
@@ -133,7 +139,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     DbPage,
     ApiPage,
     GroupPage,
-    CoursePage
+    ApiPage,
+    CoursePage,
+    PageServicePage
   ],
   providers: [
     StatusBar,
