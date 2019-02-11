@@ -34,7 +34,7 @@ export class ProfilePage {
       grade: ['72', '77'],
       medium: ['ENGLISH'],
       profileType: ProfileType.TEACHER,
-      source: ProfileSource.LOCAL,
+      source: ProfileSource.SERVER,
       subject: ['eng', 'maths'],
       syllabus: ["1oth"],
       gradeValue: {}
@@ -47,8 +47,8 @@ export class ProfilePage {
     })
   }
 
-  deleteProfile() {
-    let uid = '12345';
+  deleteProfileWithUID() {
+    let uid = '45359cbb-c513-4913-9ab6-1d7da75d536f';
     this.profileService.deleteProfile(uid).toPromise().then((result: any) => {
       console.log('successfully deleted.', result);
     }).catch((error: any) => {
@@ -56,11 +56,11 @@ export class ProfilePage {
     })
   }
 
-  getAllProfile() {
+  getAllProfiles() {
     const request: GetAllProfileRequest = {
       local: true,
-      server: true,
-      groupId: 'group1'
+      server: false,
+      groupId: '22dba91b-e3e5-42d9-92cd-890380206edd'
     };
     this.profileService.getAllProfiles().toPromise().then((success: any) => {
       console.log('successfully got all profiles', success)

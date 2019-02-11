@@ -91,7 +91,7 @@ export default class GroupPage {
   addProfileToGroupWIthId2() {
     const q = {
       groupId: '22dba91b-e3e5-42d9-92cd-890380206edd',
-      uidList: ['dfd4f1e5-c475-48c1-a5d2-5d245e684d12', '7695bab4-6188-4557-8e95-31b41de8cf1c', '4bc2e57a-7ba8-46fc-b8f8-c6a867de3b8e']
+      uidList: ['2a2390f9-4e46-432e-b495-5b7fe55b3366', 'd7de3607-02cc-490a-96ea-4a9696e43c23', 'a6858041-c159-4b8b-a813-bc5a5e9db8eb']
     };
 
     this.groupService.addProfilesToGroup(q).subscribe((val) => {

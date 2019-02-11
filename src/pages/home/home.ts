@@ -1,18 +1,19 @@
 import { Component, Inject } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {ApiService, HttpRequestType, Request, PageAssembleService, PageName, PageAssembleCriteria} from 'sunbird-sdk';
+import { HttpRequestType, Request, PageAssembleService, PageName, PageAssembleCriteria,
+  ApiService, AuthService, OAuthSessionProvider, SdkConfig, SessionProvider} from 'sunbird-sdk';
 import {ProfilePage} from "../profile/profile";
 import { FrameworkPage } from '../framework/framework';
 import {DbPage} from '../db/db';
 import {ApiPage} from '../api/api';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService, SdkConfig, SessionProvider} from 'sunbird-sdk';
 import GroupPage from '../group/group';
+import {CoursePage} from "../course/course";
 import axios, {AxiosStatic} from 'axios';
 import qs from 'qs';
+import { PageServicePage } from '../page-service/page-service';
 
 declare const escape;
-
 
 @Component({
   selector: 'page-home',
@@ -22,6 +23,7 @@ export class HomePage {
   public loginForm: FormGroup;
 
   constructor(public navCtrl: NavController,
+              @Inject('API_SERVICE') private apiService: ApiService,
               @Inject('SDK_CONFIG') private sdkConfig: SdkConfig,
               @Inject('AUTH_SERVICE') private authService: AuthService) {
     this.loginForm = new FormGroup({
@@ -49,8 +51,18 @@ export class HomePage {
     };
   };
 
+  onOAuthLoginClick() {
+    this.authService.setSession(new OAuthSessionProvider(this.sdkConfig.apiConfig, this.apiService))
+      .mergeMap(() => this.authService.getSession())
+      .subscribe((v) => {
+        console.log(v);
+      });
+  }
+
   goToProfilePage() {
-    this.navCtrl.push(ProfilePage);
+    this.navCtrl.push(ProfilePage).then((success: any) => {
+    }).catch((error: any) => {
+    })
   }
   goToFrameworkPage() {
     this.navCtrl.push(FrameworkPage);
@@ -64,10 +76,17 @@ export class HomePage {
     this.navCtrl.push(ApiPage);
   }
 
-  goTOgroupPage(){
+  goTOgroupPage() {
     this.navCtrl.push(GroupPage);
   }
+  goToCoursePage(){
+    this.navCtrl.push(CoursePage);
+  }
+  goTOPageservicePage(){
+    this.navCtrl.push(PageServicePage);
+  }
 }
+
 
 class DebugSessionProvider implements SessionProvider {
   private static readonly LOGIN_PATH = '/auth/realms/sunbird/protocol/openid-connect/token';
@@ -100,6 +119,4 @@ class DebugSessionProvider implements SessionProvider {
       userToken: uid
     }
   }
-
-
 }

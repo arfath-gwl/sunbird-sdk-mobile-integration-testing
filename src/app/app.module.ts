@@ -14,6 +14,8 @@ import {ApiPage} from '../pages/api/api';
 import {ReactiveFormsModule} from '@angular/forms';
 import GroupPage from '../pages/group/group';
 import { File } from '@ionic-native/file';
+import {CoursePage} from "../pages/course/course";
+import {PageServicePage} from '../pages/page-service/page-service';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -49,6 +51,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'FRAMEWORK_SERVICE',
     useFactory: () => SunbirdSdk.instance.frameworkService
+  }, {
+    provide: 'PAGE_ASSEMBLE_SERVICE',
+    useFactory: () => SunbirdSdk.instance.pageAssembleService
   }];
 };
 
@@ -71,7 +76,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           user_authentication: {
             redirectUrl: 'staging.diksha.app://mobile',
             logoutUrl: '',
-            authUrl: ''
+            authUrl: '/auth/realms/sunbird/protocol/openid-connect/auth'
           },
           api_authentication: {
             mobileAppKey: 'sunbird-0.1',
@@ -93,7 +98,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           apiPath: ''
         },
         courseServiceConfig: {
-          apiPath: ''
+          apiPath: '/api/course/v1'
         },
         formServiceConfig: {
           apiPath: '',
@@ -110,8 +115,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           searchProfilePath: ''
         },
         pageServiceConfig: {
-          apiPath: '',
-          filePath: ''
+          apiPath: '/api/data/v1/page/',
+          filePath: 'file:///android_asset/www/assets/data/channel/pageassemble_course_filter.json'
         },
         appConfig: {
           maxCompatibilityLevel: 100,
@@ -129,7 +134,10 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     FrameworkPage,
     DbPage,
     ApiPage,
-    GroupPage
+    GroupPage,
+    ApiPage,
+    CoursePage,
+    PageServicePage
   ],
   imports: [
     BrowserModule,
@@ -144,7 +152,10 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     FrameworkPage,
     DbPage,
     ApiPage,
-    GroupPage
+    GroupPage,
+    ApiPage,
+    CoursePage,
+    PageServicePage
   ],
   providers: [
     File,
