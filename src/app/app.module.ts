@@ -70,7 +70,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         apiConfig: {
-          debugMode: false,
+          debugMode: true,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
@@ -91,7 +91,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: false,
+          debugMode: true,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
@@ -101,22 +101,21 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           apiPath: '/api/course/v1'
         },
         formServiceConfig: {
-          apiPath: '',
-          formFilePath: ''
+          apiPath: '/api/data/v1',
+          formConfigDirPath: '/data/form',
         },
         frameworkServiceConfig: {
           channelApiPath: '/api/channel/v1',
           frameworkApiPath: '/api/framework/v1',
-          frameworkConfigFilePaths: ['file:///android_asset/www/assets/data/framework/framework-ap_k-12_13.json'],
-          channelConfigFilePath: 'file:///android_asset/www/assets/data/channel/channel-b00bc992ef25f1a9a8d63291e20efc8d.json'
+          frameworkConfigDirPath: '/data/framework',
+          channelConfigDirPath: '/data/channel'
         },
         profileServiceConfig: {
           profileApiPath: '/api/user/v1',
           tenantApiPath: '/v1/tenant'
         },
         pageServiceConfig: {
-          apiPath: '/api/data/v1',
-          filePath: 'file:///android_asset/www/assets/data/channel/pageassemble_course_filter.json'
+          apiPath: '/api/data/v1'
         },
         appConfig: {
           maxCompatibilityLevel: 100,

@@ -44,7 +44,6 @@
     "qs": "^6.6.0",
     "rxjs": "5.5.11",
     "sb-cordova-plugin-db": "git+https://github.com/swayangjit/sb-cordova-plugin-db.git",
-    "sunbird": "file:../genie-sdk-wrapper/dist",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.29"
   },
