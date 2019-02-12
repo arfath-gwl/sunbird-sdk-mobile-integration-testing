@@ -120,6 +120,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         appConfig: {
           maxCompatibilityLevel: 100,
           minCompatibilityLevel: 0
+        },
+        fileConfig: {
+          debugMode: true
         }
       });
     };
