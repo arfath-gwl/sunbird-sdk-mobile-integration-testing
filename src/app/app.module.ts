@@ -16,6 +16,7 @@ import GroupPage from '../pages/group/group';
 import {File} from '@ionic-native/file';
 import {CoursePage} from "../pages/course/course";
 import {PageServicePage} from '../pages/page-service/page-service';
+import {FormPage} from '../pages/form/form';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -54,6 +55,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'PAGE_ASSEMBLE_SERVICE',
     useFactory: () => SunbirdSdk.instance.pageAssembleService
+  }, {
+    provide: 'FORM_SERVICE',
+    useFactory: () => SunbirdSdk.instance.formService
   }];
 };
 
@@ -115,7 +119,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           tenantApiPath: '/v1/tenant'
         },
         pageServiceConfig: {
-          apiPath: '/api/data/v1'
+          apiPath: '/api/data/v1',
         },
         appConfig: {
           maxCompatibilityLevel: 100,
@@ -139,7 +143,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     GroupPage,
     ApiPage,
     CoursePage,
-    PageServicePage
+    PageServicePage,
+    FormPage
   ],
   imports: [
     BrowserModule,
@@ -157,7 +162,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     GroupPage,
     ApiPage,
     CoursePage,
-    PageServicePage
+    PageServicePage,
+    FormPage
   ],
   providers: [
     File,
@@ -167,7 +173,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     ...sunbirdSdkServicesProvidersFactory(),
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [UniqueDeviceID, Platform], multi: true}
-    
+
   ]
 })
 export class AppModule {

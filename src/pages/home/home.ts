@@ -1,9 +1,16 @@
-import { Component, Inject } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { HttpRequestType, Request, PageAssembleService, PageName, PageAssembleCriteria,
-  ApiService, AuthService, OAuthSessionProvider, SdkConfig, SessionProvider} from 'sunbird-sdk';
+import {Component, Inject} from '@angular/core';
+import {NavController} from 'ionic-angular';
+import {
+  ApiService,
+  AuthService,
+  OAuthSessionProvider,
+  PageAssembleCriteria,
+  PageName,
+  SdkConfig,
+  SessionProvider
+} from 'sunbird-sdk';
 import {ProfilePage} from "../profile/profile";
-import { FrameworkPage } from '../framework/framework';
+import {FrameworkPage} from '../framework/framework';
 import {DbPage} from '../db/db';
 import {ApiPage} from '../api/api';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -11,7 +18,8 @@ import GroupPage from '../group/group';
 import {CoursePage} from "../course/course";
 import axios, {AxiosStatic} from 'axios';
 import qs from 'qs';
-import { PageServicePage } from '../page-service/page-service';
+import {PageServicePage} from '../page-service/page-service';
+import {FormPage} from "../form/form";
 
 declare const escape;
 
@@ -41,7 +49,8 @@ export class HomePage {
         console.log(v);
       });
   }
-  callPageApi(){
+
+  callPageApi() {
     console.log('callPageApi called');
     const criteria: PageAssembleCriteria = {
       name: PageName.COURSE,
@@ -64,6 +73,7 @@ export class HomePage {
     }).catch((error: any) => {
     })
   }
+
   goToFrameworkPage() {
     this.navCtrl.push(FrameworkPage);
   }
@@ -79,11 +89,20 @@ export class HomePage {
   goTOgroupPage() {
     this.navCtrl.push(GroupPage);
   }
-  goToCoursePage(){
+
+  goToCoursePage() {
     this.navCtrl.push(CoursePage);
   }
-  goTOPageservicePage(){
+
+  goTOPageservicePage() {
     this.navCtrl.push(PageServicePage);
+  }
+
+  goToFormPage() {
+    this.navCtrl.push(FormPage)
+      .then((success: any) => {
+      }).catch((error: any) => {
+    });
   }
 }
 
