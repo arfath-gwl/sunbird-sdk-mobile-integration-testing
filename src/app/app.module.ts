@@ -8,12 +8,12 @@ import {HomePage} from '../pages/home/home';
 import {SunbirdSdk} from 'sunbird-sdk';
 import {UniqueDeviceID} from '@ionic-native/unique-device-id';
 import {ProfilePage} from '../pages/profile/profile';
-import { FrameworkPage } from '../pages/framework/framework';
+import {FrameworkPage} from '../pages/framework/framework';
 import {DbPage} from '../pages/db/db';
 import {ApiPage} from '../pages/api/api';
 import {ReactiveFormsModule} from '@angular/forms';
 import GroupPage from '../pages/group/group';
-import { File } from '@ionic-native/file';
+import {File} from '@ionic-native/file';
 import {CoursePage} from "../pages/course/course";
 import {PageServicePage} from '../pages/page-service/page-service';
 
@@ -70,7 +70,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         apiConfig: {
-          debugMode: true,
+          debugMode: false,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
@@ -91,7 +91,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: true,
+          debugMode: false,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
@@ -111,8 +111,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           channelConfigFilePath: 'file:///android_asset/www/assets/data/channel/channel-b00bc992ef25f1a9a8d63291e20efc8d.json'
         },
         profileServiceConfig: {
-          apiPath: '',
-          searchProfilePath: ''
+          profileApiPath: '/api/user/v1',
+          tenantApiPath: '/v1/tenant'
         },
         pageServiceConfig: {
           apiPath: '/api/data/v1',

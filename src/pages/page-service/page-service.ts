@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PageAssembleService, PageName, PageAssembleCriteria } from 'sunbird-sdk';
+import {Component, Inject} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {PageAssembleCriteria, PageAssembleService, PageName} from 'sunbird-sdk';
 
 /**
  * Generated class for the PageServicePage page.
@@ -25,7 +25,7 @@ export class PageServicePage {
     console.log('ionViewDidLoad PageServicePage');
   }
   getPageAssemble(){
-    const args: PageAssembleCriteria= {
+    const args: PageAssembleCriteria = {
       name: PageName.RESOURCE,
       mode: 'soft',
       source: 'web',

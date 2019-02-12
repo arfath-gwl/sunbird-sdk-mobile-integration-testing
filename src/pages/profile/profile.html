@@ -14,9 +14,27 @@
 
 
 <ion-content padding>
-  <button ion-button color="secondary" block (click)="createProfile()">createProfile()</button>
-  <button ion-button color="danger" block (click)="deleteProfileWithUID()">deleteProfileWithUID()</button>
-  <button ion-button color="primary" full (click)="getAllProfiles()">getAllProfile()</button>
-  <button ion-button color="dark" block (click)="getCurrentProfile()">getCurrentProfile()</button>
-  <button ion-button color="secondary" block (click)="updateServerProfile()">updateServerProfile()</button>
+  <ion-item-group>
+    <ion-item-divider>
+      Offline Profile Services
+    </ion-item-divider>
+    <ion-item>
+      <button ion-button color="secondary" block (click)="createProfile()">createProfile</button>
+      <button ion-button color="danger" block (click)="deleteProfileWithUID()">deleteProfileWithUID</button>
+      <button ion-button color="primary" full (click)="getAllProfiles()">getAllProfile</button>
+      <button ion-button color="dark" block (click)="getCurrentProfile()">getCurrentProfile</button>
+    </ion-item>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-item-divider>
+      Api Related Profile Services
+    </ion-item-divider>
+    <ion-item>
+      <button ion-button color="secondary" block (click)="updateServerProfile()">updateServerProfile</button>
+      <button ion-button color="dark" block (click)="getServerProfiles()">Get Server profiles</button>
+      <button ion-button color="primary" block (click)="getTenantInfo()">Get Tenant Info</button>
+      <button ion-button color="danger" block (click)="getServerProfilesDetails()">Get Server profiles Details</button>
+    </ion-item>
+  </ion-item-group>
 </ion-content>

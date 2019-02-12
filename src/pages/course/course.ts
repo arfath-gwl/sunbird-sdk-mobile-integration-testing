@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CourseService } from 'sunbird-sdk'
+import {Component, Inject} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {CourseService} from 'sunbird-sdk'
 
 
 /**
@@ -17,9 +17,10 @@ import { CourseService } from 'sunbird-sdk'
 export class CoursePage {
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    @Inject('COURSE_SERVICE') private courseService: CourseService) {
-    }
+              public navParams: NavParams,
+              @Inject('COURSE_SERVICE') private courseService: CourseService) {
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad CoursePage');
   }
@@ -34,6 +35,7 @@ export class CoursePage {
       console.log(err);
     })
   }
+
   updateContent() {
     const args = {
       userId: 'u_id',
@@ -52,12 +54,13 @@ export class CoursePage {
       console.log(err)
     })
   }
+
   courseBatchs() {
     const args = {
       courseId: 'course_id',
       filters: {
         "courseId": ["do_21252160591216640013060"],
-        "status":["0","1", "2"]
+        "status": ["0", "1", "2"]
       }
     }
     this.courseService.getCourseBatches(args).subscribe((val) => {
@@ -66,7 +69,8 @@ export class CoursePage {
       console.log(err)
     })
   }
-  getEnrollCourses(){
+
+  getEnrollCourses() {
     const args = {
       userId: 'user_id'
     }
@@ -76,6 +80,7 @@ export class CoursePage {
       console.log(err);
     })
   }
+
   enrollCourse() {
     const data = {
       userId: 'u_id',

@@ -1,10 +1,12 @@
 import {Component, Inject} from '@angular/core';
 import {
-  GetAllProfileRequest,
   Profile,
   ProfileService,
   ProfileSource,
   ProfileType,
+  ServerProfileDetailsRequest,
+  ServerProfileSearchCriteria,
+  TenantInfoRequest,
   UpdateServerProfileInfoRequest,
 } from 'sunbird-sdk';
 
@@ -57,11 +59,11 @@ export class ProfilePage {
   }
 
   getAllProfiles() {
-    const request: GetAllProfileRequest = {
-      local: true,
-      server: false,
-      groupId: '22dba91b-e3e5-42d9-92cd-890380206edd'
-    };
+    // const request: GetAllProfileRequest = {
+    //   local: true,
+    //   server: false,
+    //   groupId: '22dba91b-e3e5-42d9-92cd-890380206edd'
+    // };
     this.profileService.getAllProfiles().toPromise().then((success: any) => {
       console.log('successfully got all profiles', success)
     }).catch((error: any) => {
@@ -79,14 +81,56 @@ export class ProfilePage {
 
   updateServerProfile() {
     const request: UpdateServerProfileInfoRequest = {
-      userId: 'dummyId',
-      phone: '911'
+      userId: '8442887c-b03a-43fb-a862-b22d0b0c4956'
 
     };
     this.profileService.updateServerProfile(request).toPromise().then((result: any) => {
       console.log('success while updating', result);
     }).catch((error: any) => {
       console.log('error while updating', error);
+    })
+  }
+
+  getServerProfilesDetails() {
+    const request: ServerProfileDetailsRequest = {
+      userId: 'efac9d25-9cdf-4222-8153-930466aa0cef',
+      requiredFields: []
+    };
+    this.profileService.getServerProfilesDetails(request).toPromise()
+      .then((success: any) => {
+        console.log(' successfully get ServerProfile Details', success);
+      }).catch((error: any) => {
+      console.log('error while getting serverProfileDetails--', error);
+    });
+  }
+
+  getServerProfiles() {
+    const request: ServerProfileSearchCriteria = {
+      query: 'user',
+      filters: {
+        identifier: new Set([])
+      },
+      fields: ['identifier', 'lastName', 'firstName'],
+      limit: 10,
+      offset: 0
+    };
+    this.profileService.getServerProfiles(request).toPromise()
+      .then((success: any) => {
+        console.log('success getServerProfiles', success);
+      }).catch((error: any) => {
+      console.log(' error ', error);
+    });
+  }
+
+  getTenantInfo() {
+    const request: TenantInfoRequest = {
+      slug: '8442887c-b03a-43fb-a862-b22d0b0c4956'
+    };
+    this.profileService.getTenantInfo(request).toPromise()
+      .then((success: any) => {
+        console.log('success in tenant info', success);
+      }).catch((error: any) => {
+      console.log('error', error);
     })
   }
 }
