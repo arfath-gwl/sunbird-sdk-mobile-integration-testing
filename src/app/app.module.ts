@@ -105,7 +105,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           apiPath: '/api/course/v1'
         },
         formServiceConfig: {
-          apiPath: '/api/data/v1',
+          apiPath: '/api/data/v1/form',
           formConfigDirPath: '/data/form',
         },
         frameworkServiceConfig: {
