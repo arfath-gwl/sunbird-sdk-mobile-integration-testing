@@ -6,7 +6,6 @@ import {
   ProfileType,
   ServerProfileDetailsRequest,
   ServerProfileSearchCriteria,
-  TenantInfoRequest,
   UpdateServerProfileInfoRequest,
 } from 'sunbird-sdk';
 
@@ -93,8 +92,8 @@ export class ProfilePage {
 
   getServerProfilesDetails() {
     const request: ServerProfileDetailsRequest = {
-      userId: 'efac9d25-9cdf-4222-8153-930466aa0cef',
-      requiredFields: []
+      userId: '8442887c-b03a-43fb-a862-b22d0b0c4956',
+      requiredFields: ['completeness', 'missingFields', 'lastLoginTime', 'topics']
     };
     this.profileService.getServerProfilesDetails(request).toPromise()
       .then((success: any) => {
@@ -123,10 +122,7 @@ export class ProfilePage {
   }
 
   getTenantInfo() {
-    const request: TenantInfoRequest = {
-      slug: '8442887c-b03a-43fb-a862-b22d0b0c4956'
-    };
-    this.profileService.getTenantInfo(request).toPromise()
+    this.profileService.getTenantInfo().toPromise()
       .then((success: any) => {
         console.log('success in tenant info', success);
       }).catch((error: any) => {
