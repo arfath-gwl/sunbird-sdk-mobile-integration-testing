@@ -88,5 +88,9 @@
     <plugin name="sb-cordova-plugin-db" spec="https://github.com/swayangjit/sb-cordova-plugin-db.git" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
   <plugin name="cordova-plugin-inappbrowser" spec="3.0.0"/>
+  <plugin name="sb-cordova-plugin-customtabs" spec="https://github.com/Sunbird-Ed/sb-cordova-plugin-customtabs.git">
+    <variable name="URL_SCHEME" value="staging.diksha.app"/>
+    <variable name="URL_HOST" value="mobile"/>
+  </plugin>
     <engine name="android" spec="~7.1.4" />
 </widget>
