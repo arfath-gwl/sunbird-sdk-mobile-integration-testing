@@ -104,6 +104,10 @@ export class HomePage {
       }).catch((error: any) => {
     });
   }
+
+  doLogout() {
+    this.authService.resignSession();
+  }
 }
 
 
