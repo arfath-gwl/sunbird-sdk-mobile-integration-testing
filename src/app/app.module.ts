@@ -73,14 +73,18 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
       }
 
       await SunbirdSdk.instance.init({
+        fileConfig: {
+          debugMode: false
+        },
         apiConfig: {
-          debugMode: true,
+          debugMode: false,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
             redirectUrl: 'staging.diksha.app://mobile',
-            logoutUrl: '',
-            authUrl: '/auth/realms/sunbird/protocol/openid-connect/auth'
+            logoutUrl: '/auth/realms/sunbird/protocol/openid-connect/logout',
+            authUrl: '/auth/realms/sunbird/protocol/openid-connect/auth',
+            tokenRefreshUrl: '/auth/realms/sunbird/protocol/openid-connect/token'
           },
           api_authentication: {
             mobileAppKey: 'sunbird-0.1',
@@ -124,9 +128,6 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         appConfig: {
           maxCompatibilityLevel: 100,
           minCompatibilityLevel: 0
-        },
-        fileConfig: {
-          debugMode: true
         }
       });
     };
