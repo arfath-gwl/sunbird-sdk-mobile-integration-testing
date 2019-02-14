@@ -1,12 +1,10 @@
 import {Component, Inject, NgZone} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, Platform} from 'ionic-angular';
 import {
   ApiService,
   AuthService,
   OauthSession,
   OAuthSessionProvider,
-  PageAssembleCriteria,
-  PageName,
   ProfileService,
   SdkConfig,
   ServerProfile,
@@ -23,7 +21,7 @@ import axios, {AxiosStatic} from 'axios';
 import qs from 'qs';
 import {PageServicePage} from '../page-service/page-service';
 import {FormPage} from "../form/form";
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 declare const escape;
 
@@ -37,6 +35,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               private ngZone: NgZone,
+              private platform: Platform,
               @Inject('PROFILE_SERVICE') private profileService: ProfileService,
               @Inject('API_SERVICE') private apiService: ApiService,
               @Inject('SDK_CONFIG') private sdkConfig: SdkConfig,
@@ -59,39 +58,17 @@ export class HomePage {
     this.fetchLoggedInUser();
   }
 
-  private fetchLoggedInUser() {
-    this.authService.getSession()
-      .mergeMap((session: OauthSession | undefined) => {
-        if (!session) {
-          return undefined;
-        }
-
-        return this.profileService
-          .getServerProfilesDetails({userId: session.userToken, requiredFields: []})
-      })
-      .subscribe((profile) => {
-        this.ngZone.run(() => {
-          this.loggedInUser$.next(profile);
-        });
-      });
-  }
-
   onLoginFormSubmit() {
     this.authService.setSession(new DebugSessionProvider(this.loginForm.value, this.sdkConfig.apiConfig.host))
       .mergeMap(() => this.authService.getSession())
       .subscribe((v) => {
+        this.fetchLoggedInUser();
       });
   }
 
-  callPageApi() {
-    console.log('callPageApi called');
-    const criteria: PageAssembleCriteria = {
-      name: PageName.COURSE,
-      source: 'web',
-      filters: {},
-      mode: 'soft'
-    };
-  };
+  goToFormPage() {
+    this.navCtrl.push(FormPage);
+  }
 
   onOAuthLoginClick() {
     this.authService.setSession(new OAuthSessionProvider(this.sdkConfig.apiConfig, this.apiService))
@@ -131,15 +108,34 @@ export class HomePage {
     this.navCtrl.push(PageServicePage);
   }
 
-  goToFormPage() {
-    this.navCtrl.push(FormPage)
-      .then((success: any) => {
-      }).catch((error: any) => {
-    });
+  doLogout() {
+    if (this.platform.is('core') || this.platform.is('mobileweb')) {
+      localStorage.clear();
+      this.fetchLoggedInUser();
+      return;
+    }
+
+    this.authService.resignSession()
+      .subscribe(() => {
+        this.fetchLoggedInUser();
+      });
   }
 
-  doLogout() {
-    this.authService.resignSession();
+  private fetchLoggedInUser() {
+    this.authService.getSession()
+      .mergeMap((session: OauthSession | undefined) => {
+        if (!session) {
+          return Observable.of(undefined);
+        }
+
+        return this.profileService
+          .getServerProfilesDetails({userId: session.userToken, requiredFields: []})
+      })
+      .subscribe((profile) => {
+        this.ngZone.run(() => {
+          this.loggedInUser$.next(profile);
+        });
+      });
   }
 }
 

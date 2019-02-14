@@ -49,7 +49,8 @@
     "sb-cordova-plugin-db": "git+https://github.com/swayangjit/sb-cordova-plugin-db.git",
     "sw-toolbox": "3.6.0",
     "zone.js": "0.8.29",
-    "com.outsystems.mobile.stetho": "~0.0.1"
+    "com.outsystems.mobile.stetho": "~0.0.1",
+    "cordova-android": "~7.1.4"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.1",

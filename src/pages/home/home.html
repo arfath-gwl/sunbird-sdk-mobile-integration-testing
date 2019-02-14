@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ng-container *ngIf="loggedInUser$ | async as loggedInUser">
+  <ng-container *ngIf="loggedInUser$ && (loggedInUser$ | async) as loggedInUser">
     <ion-card>
       <ion-card-header>
         Logged In as
