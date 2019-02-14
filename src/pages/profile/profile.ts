@@ -1,12 +1,13 @@
 import {Component, Inject} from '@angular/core';
 import {
+  AcceptTermsConditionRequest,
   Profile,
   ProfileService,
   ProfileSource,
   ProfileType,
   ServerProfileDetailsRequest,
   ServerProfileSearchCriteria,
-  UpdateServerProfileInfoRequest,
+  UpdateServerProfileInfoRequest
 } from 'sunbird-sdk';
 
 /**
@@ -78,6 +79,15 @@ export class ProfilePage {
     })
   }
 
+  setCurrentProfile() {
+    const uid = '7149d27d-c80e-4a8d-ad9c-4c24f8149a7d';
+    this.profileService.setCurrentProfile(uid).subscribe(success => {
+      console.log('success in setting current profile--', success);
+    }, error => {
+      console.log('error in setting current profile--', error);
+    })
+  }
+
   updateServerProfile() {
     const request: UpdateServerProfileInfoRequest = {
       userId: '8442887c-b03a-43fb-a862-b22d0b0c4956'
@@ -127,6 +137,17 @@ export class ProfilePage {
         console.log('success in tenant info', success);
       }).catch((error: any) => {
       console.log('error', error);
+    })
+  }
+
+  acceptTermsConditions() {
+    const request: AcceptTermsConditionRequest = {
+      version: 'v1'
+    };
+    this.profileService.acceptTermsAndConditions(request).subscribe(success => {
+      console.log('successfully hit api', success)
+    }, error => {
+      console.log('could not successfully hit api', error);
     })
   }
 }
