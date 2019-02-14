@@ -1,12 +1,15 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, NgZone} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {
   ApiService,
   AuthService,
+  OauthSession,
   OAuthSessionProvider,
   PageAssembleCriteria,
   PageName,
+  ProfileService,
   SdkConfig,
+  ServerProfile,
   SessionProvider
 } from 'sunbird-sdk';
 import {ProfilePage} from "../profile/profile";
@@ -20,6 +23,7 @@ import axios, {AxiosStatic} from 'axios';
 import qs from 'qs';
 import {PageServicePage} from '../page-service/page-service';
 import {FormPage} from "../form/form";
+import {Subject} from 'rxjs';
 
 declare const escape;
 
@@ -28,9 +32,12 @@ declare const escape;
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public loggedInUser$: Subject<ServerProfile | undefined>;
   public loginForm: FormGroup;
 
   constructor(public navCtrl: NavController,
+              private ngZone: NgZone,
+              @Inject('PROFILE_SERVICE') private profileService: ProfileService,
               @Inject('API_SERVICE') private apiService: ApiService,
               @Inject('SDK_CONFIG') private sdkConfig: SdkConfig,
               @Inject('AUTH_SERVICE') private authService: AuthService) {
@@ -39,14 +46,40 @@ export class HomePage {
       'grant_type': new FormControl('password'),
       'username': new FormControl('ntptest12', Validators.required),
       'password': new FormControl('password', Validators.required)
-    })
+    });
+
+    this.loggedInUser$ = new Subject<ServerProfile | undefined>();
+  }
+
+  ionViewWillLoad() {
+    this.fetchLoggedInUser();
+  }
+
+  ionViewWillEnter() {
+    this.fetchLoggedInUser();
+  }
+
+  private fetchLoggedInUser() {
+    this.authService.getSession()
+      .mergeMap((session: OauthSession | undefined) => {
+        if (!session) {
+          return undefined;
+        }
+
+        return this.profileService
+          .getServerProfilesDetails({userId: session.userToken, requiredFields: []})
+      })
+      .subscribe((profile) => {
+        this.ngZone.run(() => {
+          this.loggedInUser$.next(profile);
+        });
+      });
   }
 
   onLoginFormSubmit() {
     this.authService.setSession(new DebugSessionProvider(this.loginForm.value, this.sdkConfig.apiConfig.host))
       .mergeMap(() => this.authService.getSession())
       .subscribe((v) => {
-        console.log(v);
       });
   }
 

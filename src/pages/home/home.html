@@ -7,6 +7,17 @@
 </ion-header>
 
 <ion-content padding>
+  <ng-container *ngIf="loggedInUser$ | async as loggedInUser">
+    <ion-card>
+      <ion-card-header>
+        Logged In as
+      </ion-card-header>
+      <ion-card-content>
+        {{loggedInUser.firstName}}, {{loggedInUser.lastName}}
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
   <form [formGroup]="loginForm" (submit)="onLoginFormSubmit()">
     <ion-list>
 
