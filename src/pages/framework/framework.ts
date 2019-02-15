@@ -4,6 +4,7 @@ import { ApiService, HttpRequestType, Request, UpdateQuery, PageAssembleService,
    PageAssembleCriteria, DbService, InsertQuery, ReadQuery, FrameworkService,
     ChannelDetailsRequest, FrameworkDetailsRequest } from 'sunbird-sdk';
 import { File } from '@ionic-native/file';
+import { SystemSettingsService, GetSystemSettingsRequest } from 'sunbird-sdk/system-settings';
 @Component({
   selector: 'page-framework',
   templateUrl: 'framework.html'
@@ -15,6 +16,7 @@ export class FrameworkPage {
     @Inject('PAGE_ASSEMBLE_SERVICE') private pageService: PageAssembleService,
     @Inject('DB_SERVICE') private dbService: DbService,
     @Inject('FRAMEWORK_SERVICE') private frameworkService: FrameworkService,
+    @Inject('SYSTEM_SETTINGS_SERVICE') private systemSettingsService: SystemSettingsService,
     private file: File
   ) {
 
@@ -39,10 +41,23 @@ export class FrameworkPage {
     })
   }
 
+  getSystemSettings() {
+    console.log('in getSystemSettings');
+    const getSystemSettingsRequest: GetSystemSettingsRequest = {
+      id : 'custodianOrgId'
+    }
+    this.systemSettingsService.getSystemSettings(getSystemSettingsRequest).subscribe( res => {
+      console.log('getSystemSettings res', res);
+    }, err => {
+      console.log('getSystemSettings err', err);
+    })
+  }
+
   getFrameworkDetails() {
     console.log('in getFrameworkDetails');
     const frameworkDetailsRequest: FrameworkDetailsRequest = {
-      frameworkId : 'ap_k-12_13'
+      frameworkId : 'ap_k-12_13',
+      categories: []
     }
     this.frameworkService.getFrameworkDetails(frameworkDetailsRequest).subscribe( res => {
       console.log('getFrameworkDetails res', res);

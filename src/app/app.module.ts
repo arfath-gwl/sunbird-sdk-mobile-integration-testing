@@ -58,6 +58,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'FORM_SERVICE',
     useFactory: () => SunbirdSdk.instance.formService
+  }, {
+    provide: 'SYSTEM_SETTINGS_SERVICE',
+    useFactory: () => SunbirdSdk.instance.systemSettingsService
   }];
 };
 
@@ -74,7 +77,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         fileConfig: {
-          debugMode: true
+          debugMode: false
         },
         apiConfig: {
           debugMode: true,
@@ -126,6 +129,10 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         appConfig: {
           maxCompatibilityLevel: 100,
           minCompatibilityLevel: 0
+        },
+        systemSettingsConfig: {
+          systemSettingsApiPath: '/api/data/v1',
+          systemSettingsDirPath: '/data/system',
         }
       });
     };
