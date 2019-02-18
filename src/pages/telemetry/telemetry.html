@@ -8,6 +8,18 @@
 
 
 <ion-content padding>
-  <button ion-button color="secondary" block (click)="impressionTelemetryAfter()"></button>
+  <button ion-button color="secondary" block (click)="impressionTelemetryAfter()">impression Telemetry After</button>
+  <button ion-button color="secondary" block (click)="impressionTelemetryBefore()">impression Telemetry Before</button>
+  <button ion-button color="secondary" block (click)="impressionTelemetryAfterMethodResolves()">impression Telemetry After Method Resolves</button>
+  <button ion-button color="danger" block (click)="interactTelemetryAfter()">Interact Telemetry After</button>
+  <button ion-button color="danger" block (click)="interactTelemetryBefore()">Interact Telemetry Before</button>
+  <button ion-button color="danger" block (click)="interactTelemetryAfterResolves()">Interact Telemetry After Resolves</button>
+  <button ion-button color="danger" block (click)="interactTelemetryAfterRejects()">Interact Telemetry After Rejects</button>
+  <button ion-button color="dark" block (click)="logTelemetryBefore()">Log Telemetry Before</button>
+  <button ion-button color="dark" block (click)="logTelemetryAfter()">Log Telemetry After Resolves</button>
+  <button ion-button color="primary" block (click)="startTelemetryAfter()">Start Telemetry After </button>
+  <button ion-button color="primary" block (click)="startTelemetryAfter()">Start Telemetry After </button>
+  <button ion-button color="primary" block (click)="startTelemetryAfterResolves()">Start Telemetry Before </button>
 
+  <button ion-button color="dark" block (click)="errorTelemetryAfter()">Error Telemetry After </button>
 </ion-content>
