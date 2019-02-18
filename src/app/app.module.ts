@@ -117,6 +117,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         frameworkServiceConfig: {
           channelApiPath: '/api/channel/v1',
           frameworkApiPath: '/api/framework/v1',
+          searchOrganizationApiPath: '/api/org/v1',
           frameworkConfigDirPath: '/data/framework',
           channelConfigDirPath: '/data/channel'
         },
