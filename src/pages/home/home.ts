@@ -22,6 +22,8 @@ import qs from 'qs';
 import {PageServicePage} from '../page-service/page-service';
 import {FormPage} from "../form/form";
 import {Observable, Subject} from 'rxjs';
+import {ContentPage} from "../content/content";
+import {TelemetryPage} from "../telemetry/telemetry";
 
 declare const escape;
 
@@ -119,6 +121,12 @@ export class HomePage {
       .subscribe(() => {
         this.fetchLoggedInUser();
       });
+  }
+  goToContentPage(){
+    this.navCtrl.push(ContentPage);
+  }
+  gotToTelemetryPage(){
+    this.navCtrl.push(TelemetryPage);
   }
 
   private fetchLoggedInUser() {
