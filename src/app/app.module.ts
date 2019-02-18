@@ -81,7 +81,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           debugMode: false
         },
         apiConfig: {
-          debugMode: true,
+          debugMode: false,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
@@ -101,7 +101,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           }
         },
         dbConfig: {
-          debugMode: true,
+          debugMode: false,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
@@ -122,7 +122,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         },
         profileServiceConfig: {
           profileApiPath: '/api/user/v1',
-          tenantApiPath: '/v1/tenant'
+          tenantApiPath: '/v1/tenant',
+          otpApiPath: '/api/otp/v1',
+          searchLocationApiPath: '/api/data/v1'
         },
         pageServiceConfig: {
           apiPath: '/api/data/v1',

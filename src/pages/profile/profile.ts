@@ -1,13 +1,17 @@
 import {Component, Inject} from '@angular/core';
 import {
   AcceptTermsConditionRequest,
+  GenerateOtpRequest,
+  IsProfileAlreadyInUseRequest,
+  LocationSearchCriteria,
   Profile,
   ProfileService,
   ProfileSource,
   ProfileType,
   ServerProfileDetailsRequest,
   ServerProfileSearchCriteria,
-  UpdateServerProfileInfoRequest
+  UpdateServerProfileInfoRequest,
+  VerifyOtpRequest,
 } from 'sunbird-sdk';
 
 /**
@@ -149,5 +153,53 @@ export class ProfilePage {
     }, error => {
       console.log('could not successfully hit api', error);
     })
+  }
+
+  isProfileAlreadyInUse() {
+    const request: IsProfileAlreadyInUseRequest = {
+      key: '9019720923',
+      type: 'phone'
+    };
+    this.profileService.isProfileAlreadyInUse(request).subscribe((success) => {
+      console.log('isProfileAlreadyInUse--', success.response);
+    }, error => {
+      console.log('error in isProfileAlreadyInUse--', error);
+    });
+  }
+
+  generateOtp() {
+    const request: GenerateOtpRequest = {
+      key: 'subranil.saha@gmail.com',
+      type: 'email'
+    };
+    this.profileService.generateOTP(request).subscribe((success) => {
+      console.log('generateOTP-- ', success)
+    }, error => {
+      console.log('error in generating OTP', error);
+    });
+  }
+
+  verifyOtp() {
+    const request: VerifyOtpRequest = {
+      key: 'subranil.saha@gmail.com',
+      type: 'email',
+      otp: '625312'
+    };
+    this.profileService.verifyOTP(request).subscribe((success) => {
+      console.log('Successfully verified OTP--', success);
+    }, error => {
+      console.log('Error in Verify OTP--', error);
+    });
+  }
+
+  searchLocation() {
+    const request: LocationSearchCriteria = {
+      type: 'state',
+    };
+    this.profileService.searchLocation(request).subscribe((success) => {
+      console.log('Successfully searched location--', success);
+    }, error => {
+      console.log('error in searching location --', error)
+    });
   }
 }

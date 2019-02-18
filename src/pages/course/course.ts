@@ -1,6 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
-import {CourseService} from 'sunbird-sdk'
+import {CourseService, UnenrollCourseRequest} from 'sunbird-sdk'
 
 
 /**
@@ -16,8 +15,7 @@ import {CourseService} from 'sunbird-sdk'
 })
 export class CoursePage {
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(
               @Inject('COURSE_SERVICE') private courseService: CourseService) {
   }
 
@@ -83,15 +81,28 @@ export class CoursePage {
 
   enrollCourse() {
     const data = {
-      userId: 'u_id',
-      courseId: 'c_id',
-      contentId: 'content_id',
-      batchId: 'SAMPLE_BATCH_ID'
+      userId: '8442887c-b03a-43fb-a862-b22d0b0c4956',
+      courseId: 'do_2123163551322849281354',
+      contentId: 'do_2123163551322849281354',
+      batchId: '01232279970878259274'
     }
     this.courseService.enrollCourse(data).subscribe((val) => {
       console.log(val);
     }, err => {
       console.log(err);
+    })
+  }
+
+  unenrollCourse() {
+    const request: UnenrollCourseRequest = {
+      userId: '8442887c-b03a-43fb-a862-b22d0b0c4956',
+      courseId: 'do_2123163551322849281354',
+      batchId: '01232279970878259274'
+    };
+    this.courseService.unenrollCourse(request).subscribe(success => {
+      console.log('successfully unEnrolled ---', success);
+    }, error => {
+      console.log('error in UnEnrolling', error);
     })
   }
 

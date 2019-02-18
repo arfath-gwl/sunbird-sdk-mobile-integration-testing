@@ -37,6 +37,10 @@
       <button ion-button color="primary" block (click)="getTenantInfo()">Get Tenant Info</button>
       <button ion-button color="danger" block (click)="getServerProfilesDetails()">Get Server profiles Details</button>
       <button ion-button color="dark" block (click)="acceptTermsConditions()">Accept Terms and Conditions</button>
+      <button ion-button color="secondary" full (click)="isProfileAlreadyInUse()">Is Profile Already In Use</button>
+      <button ion-button color="primary" block (click)="generateOtp()">Generate OTP</button>
+      <button ion-button color="danger" block (click)="verifyOtp()">Verify OTP</button>
+      <button ion-button color="dark" full (click)="searchLocation()">Search Location</button>
     </ion-item>
   </ion-item-group>
 </ion-content>
