@@ -17,8 +17,6 @@ import {File} from '@ionic-native/file';
 import {CoursePage} from "../pages/course/course";
 import {PageServicePage} from '../pages/page-service/page-service';
 import {FormPage} from '../pages/form/form';
-import {ContentPage} from '../pages/content/content';
-import {TelemetryPage} from '../pages/telemetry/telemetry';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -61,11 +59,8 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
     provide: 'FORM_SERVICE',
     useFactory: () => SunbirdSdk.instance.formService
   }, {
-    provide: 'CONTENT_SERVICE',
-    useFactory: () => SunbirdSdk.instance.contentService
-  }, {
-    provide: 'CONTENT_FEEDBACK_SERVICE',
-    useFactory: () => SunbirdSdk.instance.contentFeedbackService
+    provide: 'SYSTEM_SETTINGS_SERVICE',
+    useFactory: () => SunbirdSdk.instance.systemSettingsService
   }];
 };
 
@@ -82,7 +77,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         fileConfig: {
-          debugMode: true
+          debugMode: false
         },
         apiConfig: {
           debugMode: true,
@@ -134,6 +129,10 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         appConfig: {
           maxCompatibilityLevel: 100,
           minCompatibilityLevel: 0
+        },
+        systemSettingsConfig: {
+          systemSettingsApiPath: '/api/data/v1',
+          systemSettingsDirPath: '/data/system',
         }
       });
     };
@@ -151,9 +150,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     ApiPage,
     CoursePage,
     PageServicePage,
-    FormPage,
-    ContentPage,
-    TelemetryPage
+    FormPage
   ],
   imports: [
     BrowserModule,
@@ -172,9 +169,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     ApiPage,
     CoursePage,
     PageServicePage,
-    FormPage,
-    ContentPage,
-    TelemetryPage
+    FormPage
   ],
   providers: [
     File,
