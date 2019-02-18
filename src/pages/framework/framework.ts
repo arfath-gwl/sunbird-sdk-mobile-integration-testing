@@ -1,8 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ApiService, HttpRequestType, Request, UpdateQuery, PageAssembleService, PageName,
-   PageAssembleCriteria, DbService, InsertQuery, ReadQuery, FrameworkService,
-    ChannelDetailsRequest, FrameworkDetailsRequest } from 'sunbird-sdk';
+import {
+  ApiService, HttpRequestType, Request, UpdateQuery, PageAssembleService, PageName,
+  PageAssembleCriteria, DbService, InsertQuery, ReadQuery, FrameworkService,
+  ChannelDetailsRequest, FrameworkDetailsRequest, OrganizationSearchCriteria
+} from 'sunbird-sdk';
 import { File } from '@ionic-native/file';
 import { SystemSettingsService, GetSystemSettingsRequest } from 'sunbird-sdk/system-settings';
 @Component({
@@ -21,20 +23,20 @@ export class FrameworkPage {
   ) {
 
   }
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     console.log(this.file);
-    this.file.checkDir(this.file.applicationDirectory, 'www/assets/data/channel').then(file => 
+    this.file.checkDir(this.file.applicationDirectory, 'www/assets/data/channel').then(file =>
       console.log('Directory exists')
-   ).catch(err => console.log('Directory doesnt exist'));
+    ).catch(err => console.log('Directory doesnt exist'));
 
   }
-  
+
   getChannelDetails() {
     console.log('in getChanneleDetails');
     const channelDetailsRequest: ChannelDetailsRequest = {
-      channelId : 'b00bc992ef25f1a9a8d63291e20efc8d'
+      channelId: 'b00bc992ef25f1a9a8d63291e20efc8d'
     }
-    this.frameworkService.getChannelDetails(channelDetailsRequest).subscribe( res => {
+    this.frameworkService.getChannelDetails(channelDetailsRequest).subscribe(res => {
       console.log('getChannelDetails res', res);
     }, err => {
       console.log('err', err);
@@ -44,9 +46,9 @@ export class FrameworkPage {
   getSystemSettings() {
     console.log('in getSystemSettings');
     const getSystemSettingsRequest: GetSystemSettingsRequest = {
-      id : 'custodianOrgId'
+      id: 'custodianOrgId'
     }
-    this.systemSettingsService.getSystemSettings(getSystemSettingsRequest).subscribe( res => {
+    this.systemSettingsService.getSystemSettings(getSystemSettingsRequest).subscribe(res => {
       console.log('getSystemSettings res', res);
     }, err => {
       console.log('getSystemSettings err', err);
@@ -56,13 +58,28 @@ export class FrameworkPage {
   getFrameworkDetails() {
     console.log('in getFrameworkDetails');
     const frameworkDetailsRequest: FrameworkDetailsRequest = {
-      frameworkId : 'ap_k-12_13',
+      frameworkId: 'ap_k-12_13',
       categories: []
     }
-    this.frameworkService.getFrameworkDetails(frameworkDetailsRequest).subscribe( res => {
+    this.frameworkService.getFrameworkDetails(frameworkDetailsRequest).subscribe(res => {
       console.log('getFrameworkDetails res', res);
     }, err => {
       console.log('getFrameworkDetails err', err);
+    })
+  }
+
+  organizationSearch() {
+    console.log('in searchOrganization');
+    const organizationSearchRequest: OrganizationSearchCriteria = {
+      filters: {
+        isRootOrg: true
+      },
+      fields: ["orgName", "hashTagId"]
+    }
+    this.frameworkService.searchOrganization<{ orgName: string, hashTagId: string }>(organizationSearchRequest).subscribe(res => {
+      console.log('searchOrganization res', res);
+    }, err => {
+      console.log('searchOrganization err', err);
     })
   }
 
@@ -99,6 +116,6 @@ export class FrameworkPage {
     });
   };
 
-  
+
 
 }
