@@ -42,7 +42,7 @@ export class ProfilePage {
       gradeValue: {}
     };
 
-    this.profileService.createProfile(req).toPromise().then((res: any) => {
+    this.profileService.createProfile(req, ProfileSource.SERVER).toPromise().then((res: any) => {
       console.log('CreatedProfile?--', res);
     }).catch((err: any) => {
       console.log('err', err);
@@ -72,7 +72,7 @@ export class ProfilePage {
   }
 
   getCurrentProfile() {
-    this.profileService.getCurrentProfileSession().toPromise().then((result: any) => {
+    this.profileService.getActiveProfileSession().toPromise().then((result: any) => {
       console.log('getCurrentProfileSession', result);
     }).catch((error: any) => {
       console.log('error', error);
@@ -81,7 +81,7 @@ export class ProfilePage {
 
   setCurrentProfile() {
     const uid = '7149d27d-c80e-4a8d-ad9c-4c24f8149a7d';
-    this.profileService.setCurrentProfile(uid).subscribe(success => {
+    this.profileService.setActiveSessionForProfile(uid).subscribe(success => {
       console.log('success in setting current profile--', success);
     }, error => {
       console.log('error in setting current profile--', error);

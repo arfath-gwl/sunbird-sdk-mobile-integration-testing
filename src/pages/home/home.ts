@@ -125,7 +125,7 @@ export class HomePage {
   goToContentPage(){
     this.navCtrl.push(ContentPage);
   }
-  gotToTelemetryPage(){
+  goToTelemetryPage(){
     this.navCtrl.push(TelemetryPage);
   }
 

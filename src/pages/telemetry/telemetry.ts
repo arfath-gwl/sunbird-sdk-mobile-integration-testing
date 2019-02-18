@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ImpressionType, ImpressionSubtype, PageId, Environment, GenerateImpressionTelemetryAfterMethod} from 'sunbird-sdk';
 
 /**
  * Generated class for the TelemetryPage page.
@@ -19,6 +20,15 @@ export class TelemetryPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TelemetryPage');
+  }
+  @GenerateImpressionTelemetryAfterMethod({
+    impressionType: ImpressionType.LIST,
+    subType: ImpressionSubtype.RATING_POPUP,
+    pageId: PageId.LIBRARY,
+    env: Environment.LIBRARY
+  })
+  impressionTelemetryAfter(){
+   
   }
 
 }

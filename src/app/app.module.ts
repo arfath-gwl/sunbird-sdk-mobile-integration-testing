@@ -17,6 +17,7 @@ import {File} from '@ionic-native/file';
 import {CoursePage} from "../pages/course/course";
 import {PageServicePage} from '../pages/page-service/page-service';
 import {FormPage} from '../pages/form/form';
+import {TelemetryPage} from '../pages/telemetry/telemetry';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -150,7 +151,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     ApiPage,
     CoursePage,
     PageServicePage,
-    FormPage
+    FormPage,
+    TelemetryPage
   ],
   imports: [
     BrowserModule,
@@ -169,7 +171,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     ApiPage,
     CoursePage,
     PageServicePage,
-    FormPage
+    FormPage,
+    TelemetryPage
   ],
   providers: [
     File,
