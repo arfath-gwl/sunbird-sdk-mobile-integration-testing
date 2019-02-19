@@ -59,7 +59,7 @@ export class FrameworkPage {
     console.log('in getFrameworkDetails');
     const frameworkDetailsRequest: FrameworkDetailsRequest = {
       frameworkId: 'ap_k-12_13',
-      categories: []
+      requiredCategories: []
     }
     this.frameworkService.getFrameworkDetails(frameworkDetailsRequest).subscribe(res => {
       console.log('getFrameworkDetails res', res);
@@ -70,13 +70,13 @@ export class FrameworkPage {
 
   organizationSearch() {
     console.log('in searchOrganization');
-    const organizationSearchRequest: OrganizationSearchCriteria = {
+    const organizationSearchRequest: OrganizationSearchCriteria<{ orgName: string, hashTagId: string }> = {
       filters: {
         isRootOrg: true
       },
       fields: ["orgName", "hashTagId"]
     }
-    this.frameworkService.searchOrganization<{ orgName: string, hashTagId: string }>(organizationSearchRequest).subscribe(res => {
+    this.frameworkService.searchOrganization(organizationSearchRequest).subscribe(res => {
       console.log('searchOrganization res', res);
     }, err => {
       console.log('searchOrganization err', err);
