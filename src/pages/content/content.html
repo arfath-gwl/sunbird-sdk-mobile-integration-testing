@@ -14,11 +14,11 @@
 
 
 <ion-content padding>
-  <button ion-button color="primary" full (click)="contentDetails()">get content details</button>
+  <button ion-button color="primary" full (click)="getContentDetails()">get content details</button>
   <button ion-button color="primary" full (click)="getContent()">get content </button>
   <button ion-button color="primary" full (click)="getChildContentData()">get child Content</button>
   <button ion-button color="primary" full (click)="searchContentData()">Search Content</button>
-  <button ion-button color="primary" full (click)="deleteAcontent()">Delete A Content</button>
+  <button ion-button color="primary" full (click)="deleteContent()">Delete A Content</button>
   <button ion-button color="primary" full (click)="prevContentData()">Previous Content</button>
   <button ion-button color="primary" full (click)="nextContentData()">next Content</button>
   <button ion-button color="primary" full (click)="importEcarFile()">Import Ecar</button>
@@ -29,5 +29,6 @@
   <button ion-button color="primary" full (click)="getStateDownload()">get download state</button>
   <button ion-button color="primary" full (click)="cancelDownloadFile()">cancel Download</button>
   <div style="margin-top: 10px"><button ion-button color="secondary" full (click)="getFeedback()">get feedback</button>
-  <button ion-button color="secondary" full (click)="setFeedbackContent()">get feedback</button></div>
+    <button ion-button color="secondary" full (click)="setFeedbackContent()">send feedback Content</button>
+  </div>
 </ion-content>

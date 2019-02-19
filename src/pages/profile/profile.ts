@@ -33,20 +33,20 @@ export class ProfilePage {
 
   createProfile() {
     const req: Profile = {
-      uid: '1235',
+      uid: '',
       handle: 'Hello',
       board: ['cbse', 'icse', 'bhojpuri'],
       createdAt: Date.now(),
       grade: ['72', '77'],
       medium: ['ENGLISH'],
       profileType: ProfileType.TEACHER,
-      source: ProfileSource.SERVER,
+      source: ProfileSource.LOCAL,
       subject: ['eng', 'maths'],
       syllabus: ["1oth"],
       gradeValue: {}
     };
 
-    this.profileService.createProfile(req, ProfileSource.SERVER).toPromise().then((res: any) => {
+    this.profileService.createProfile(req, ProfileSource.LOCAL).toPromise().then((res: any) => {
       console.log('CreatedProfile?--', res);
     }).catch((err: any) => {
       console.log('err', err);
@@ -89,6 +89,27 @@ export class ProfilePage {
       console.log('success in setting current profile--', success);
     }, error => {
       console.log('error in setting current profile--', error);
+    })
+  }
+
+  updateProfile() {
+    const req: Profile = {
+      uid: '7149d27d-c80e-4a8d-ad9c-4c24f8149a7d',
+      handle: 'shubranil',
+      createdAt: Date.now(),
+      source: ProfileSource.LOCAL,
+      board: [''],
+      profileType: ProfileType.TEACHER,
+      syllabus: [''],
+      grade: [''],
+      subject: [''],
+      medium: ['English'],
+      gradeValue: {}
+    };
+    this.profileService.updateProfile(req).subscribe(sucess => {
+      console.log('Successfully updated Profile-- ', sucess)
+    }, error => {
+      console.log('error while updating profile-- ', error);
     })
   }
 

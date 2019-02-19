@@ -18,6 +18,7 @@ import {CoursePage} from "../pages/course/course";
 import {PageServicePage} from '../pages/page-service/page-service';
 import {FormPage} from '../pages/form/form';
 import {TelemetryPage} from '../pages/telemetry/telemetry';
+import {ContentPage} from "../pages/content/content";
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -62,6 +63,12 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'SYSTEM_SETTINGS_SERVICE',
     useFactory: () => SunbirdSdk.instance.systemSettingsService
+  }, {
+    provide: 'CONTENT_SERVICE',
+    useFactory: () => SunbirdSdk.instance.contentService
+  }, {
+    provide: 'CONTENT_FEEDBACK_SERVICE',
+    useFactory: () => SunbirdSdk.instance.contentFeedbackService
   }];
 };
 
@@ -78,10 +85,10 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
 
       await SunbirdSdk.instance.init({
         fileConfig: {
-          debugMode: false
+          debugMode: true
         },
         apiConfig: {
-          debugMode: false,
+          debugMode: true,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
@@ -94,18 +101,19 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
             mobileAppConsumer: 'mobile_device',
             channelId: '505c7c48ac6dc1edc9b08f21db5a571d',
             producerId: 'staging.diksha.app',
-            deviceId: deviceId
+            deviceId: deviceId,
+            producerUniqueId: 'sunbird.app'
           },
           cached_requests: {
             timeToLive: 2000
           }
         },
         dbConfig: {
-          debugMode: false,
+          debugMode: true,
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
-          apiPath: ''
+          apiPath: '/api/content/v1'
         },
         courseServiceConfig: {
           apiPath: '/api/course/v1'
@@ -155,7 +163,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     CoursePage,
     PageServicePage,
     FormPage,
-    TelemetryPage
+    TelemetryPage,
+    ContentPage
   ],
   imports: [
     BrowserModule,
@@ -175,7 +184,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     CoursePage,
     PageServicePage,
     FormPage,
-    TelemetryPage
+    TelemetryPage,
+    ContentPage
   ],
   providers: [
     File,

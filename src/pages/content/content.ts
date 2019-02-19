@@ -1,10 +1,15 @@
 import {Component, Inject} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ContentService, ContentFeedbackService} from 'sunbird-sdk';
+import {
+  ChildContentRequest,
+  ContentDetailRequest,
+  ContentFeedbackService,
+  ContentRequest,
+  ContentService,
+} from 'sunbird-sdk';
 
 /**
  * Generated class for the ContentPage page.
-  *
+ *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
@@ -15,58 +20,71 @@ import {ContentService, ContentFeedbackService} from 'sunbird-sdk';
 })
 export class ContentPage {
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              @Inject('CONTENT_SERVICE') private contentService: ContentService,
-              @Inject('CONTENT_FEEDBACK_SERVICE') private contentFeedbackService: ContentFeedbackService) {
+  constructor(
+    @Inject('CONTENT_SERVICE') private contentService: ContentService,
+    @Inject('CONTENT_FEEDBACK_SERVICE') private contentFeedbackService: ContentFeedbackService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ContentPage');
-  }
-  contentDetails(){
-    const args = {
-      contentId: "do_2122162576275701761294"
-    }
-    this.contentService.getContentDetails(args).subscribe((val) => {
-      console.log(val);
+  getContentDetails() {
+    const request: ContentDetailRequest = {
+      contentId: 'do_21269736318051123211983'
+    };
+    this.contentService.getContentDetails(request).subscribe((val) => {
+      console.log('Successfully getContentDetails--  ', val);
     }, err => {
-      console.log(err);
+      console.log('error in getContentDetails--  ', err);
     })
   }
 
-  getContent(){
-    const args ={
+  getContent() {
+    const request: ContentRequest = {
       uid: 'ec187ddf-7386-4c02-bd18-4b2550a817f2',
       contentTypes: [],
       audience: [],
       pragma: []
-    }
-    this.contentService.getContents(args).subscribe((val) => {
-      console.log(val);
+    };
+    this.contentService.getContents(request).subscribe((val) => {
+      console.log('successfully getContent--  ', val);
     }, err => {
-      console.log(err);
+      console.log('error in getContent -- ', err);
     })
   }
 
-  getChildContentData(){
-    const args = {
+  getChildContentData() {
+    const req: ChildContentRequest = {
       contentId: "do_2122162576275701761294",
       hierarchyInfo: [],
       level: 0
-  }
-  this.contentService.getChildContents(args).subscribe((val) => {
-    console.log(val);
-  }, err => {
-    console.log(err);
-  })
-}
-
-  searchContentData(){
-   
+    };
+    this.contentService.getChildContents(req).subscribe((val) => {
+      console.log('successfully getChildContents--  ', val);
+    }, err => {
+      console.log('error in getChildContents--  ', err);
+    })
   }
 
-  deleteAcontent(){
+  // searchContentData() {
+  //   const request: ContentSearchCriteria = {
+  //     query: '',
+  //     contentTypes: [''],
+  //     facets: [''],
+  //     audience: [''],
+  //     mode: '',
+  //     framework: '',
+  //     languageCode: '',
+  //     facetFilters: ,
+  //     impliedFilters: '',
+  //     sortCriteria: '',
+  //     searchType: ''
+  //   };
+  //   this.contentService.searchContent(request).subscribe(success => {
+  //     console.log('successfully searchedContent--  ', success);
+  //   }, error => {
+  //     console.log('error in searchContent -- ', error);
+  //   })
+  // }
+
+  deleteContent() {
     const arg = {
       contentDeleteList: [
         {
@@ -74,15 +92,15 @@ export class ContentPage {
           isChildContent: true
         }
       ]
-     } 
-     this.contentService.deleteContent(arg).subscribe((val) => {
-       console.log(val);
-     }, err => {
-       console.log(err);
-     })
+    }
+    this.contentService.deleteContent(arg).subscribe((val) => {
+      console.log(val);
+    }, err => {
+      console.log(err);
+    })
   }
 
-  prevContentData(){
+  prevContentData() {
     const hierarchyInfo = [];
     this.contentService.prevContent(hierarchyInfo, 'content').subscribe((val) => {
       console.log(val);
@@ -92,7 +110,7 @@ export class ContentPage {
 
   }
 
-  nextContentData(){
+  nextContentData() {
     const hierarchyInfo = [];
     this.contentService.nextContent(hierarchyInfo, 'next_content').subscribe((val) => {
       console.log(val);
@@ -101,38 +119,38 @@ export class ContentPage {
     })
   }
 
-  importEcarFile(){
+  importEcarFile() {
 
   }
 
-  importContentData(){
+  importContentData() {
 
   }
 
-  subscribeForImportStatus(){
+  subscribeForImportStatus() {
 
   }
 
-  cancelImportContent(){
-   
+  cancelImportContent() {
+
 
   }
 
-  exportContentData(){
+  exportContentData() {
     const args = {
       exportedFilePath: ''
     }
   }
 
-  getStateDownload(){
+  getStateDownload() {
 
   }
 
-  cancelDownloadFile(){
+  cancelDownloadFile() {
 
   }
 
-  getFeedback(){
+  getFeedback() {
     const args = {
       uid: 'ec187ddf-7386-4c02-bd18-4b2550a817f2',
       contentId: "do_2122162576275701761294"
@@ -144,14 +162,14 @@ export class ContentPage {
     })
   }
 
-  setFeedbackContent(){
+  setFeedbackContent() {
     const args = {
-    contentId: 'do_2122162576275701761294',
-    rating: 1,
-    comments: '',
-    createdAt: 2,
-    stageId: '',
-    contentVersion: ''
+      contentId: 'do_2122162576275701761294',
+      rating: 1,
+      comments: '',
+      createdAt: 2,
+      stageId: '',
+      contentVersion: ''
     }
     this.contentFeedbackService.sendFeedback(args).subscribe((val) => {
       console.log(val);
