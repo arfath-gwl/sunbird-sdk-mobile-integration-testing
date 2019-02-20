@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ImpressionType, ImpressionSubtype, PageId, Environment, GenerateImpressionTelemetryAfterMethod,
-  GenerateImpressionTelemetryBeforeMethod, GenerateImpressionTelemetryAfterMethodResolves} from 'sunbird-sdk';
+  GenerateImpressionTelemetryBeforeMethod, GenerateImpressionTelemetryAfterMethodResolves, TelemetryService} from 'sunbird-sdk';
 import {GenerateInteractTelemetryAfterMethod,
-        InteractType, InteractSubtype,
+        InteractType, InteractSubtype, Rollup,
         GenerateInteractTelemetryBeforeMethod, 
         GenerateInteractTelemetryAfterMethodResolves,
         GenerateInteractTelemetryAfterMethodRejects,
-        GenerateErrorTelemetryAfterMethodThrows} from 'sunbird-sdk';
-
+        GenerateErrorTelemetryAfterMethodThrows} from 'sunbird-sdk';      
 import {LogLevel, LogType, GenerateLogTelemetryBeforeMethod, GenerateLogTelemetryAfterMethodResolves} from 'sunbird-sdk';  
-import {Mode, GenerateStartTelemetryAfterMethod, GenerateStartTelemetryAfterMethodResolves, GenerateStartTelemetryBeforeMethod} from 'sunbird-sdk';
+import {Mode, GenerateStartTelemetryAfterMethod, GenerateStartTelemetryAfterMethodResolves, GenerateStartTelemetryBeforeMethod, DeviceSpecification} from 'sunbird-sdk';
 
 /**
  * Generated class for the TelemetryPage page.
@@ -25,35 +24,55 @@ import {Mode, GenerateStartTelemetryAfterMethod, GenerateStartTelemetryAfterMeth
 })
 export class TelemetryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              @Inject('TELEMETRY_SERVICE') private telemetryService: TelemetryService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TelemetryPage');
   }
   @GenerateImpressionTelemetryAfterMethod({
-    impressionType: ImpressionType.LIST,
+    type: ImpressionType.LIST,
     subType: ImpressionSubtype.RATING_POPUP,
-    pageId: PageId.LIBRARY,
-    env: Environment.LIBRARY
+    pageId: PageId.LOGIN,
+    uri: '',
+    visits: [],
+    env: Environment.COURSE,
+    objId: '',
+    objType: '',
+    objVer: '',
+    correlationData: []
   })
   impressionTelemetryAfter(){
    
   }
   @GenerateImpressionTelemetryBeforeMethod({
-    impressionType: ImpressionType.LIST,
+    type: ImpressionType.LIST,
     subType: ImpressionSubtype.RATING_POPUP,
-    pageId: PageId.LIBRARY,
-    env: Environment.LIBRARY
+    pageId: PageId.LOGIN,
+    uri: '',
+    visits: [],
+    env: Environment.COURSE,
+    objId: '',
+    objType: '',
+    objVer: '',
+    correlationData: []
   })
   impressionTelemetryBefore(){
   
   }
   @GenerateImpressionTelemetryAfterMethodResolves({
-    impressionType: ImpressionType.LIST,
+    type: ImpressionType.LIST,
     subType: ImpressionSubtype.RATING_POPUP,
-    pageId: PageId.LIBRARY,
-    env: Environment.LIBRARY
+    pageId: PageId.LOGIN,
+    uri: '',
+    visits: [],
+    env: Environment.COURSE,
+    objId: '',
+    objType: '',
+    objVer: '',
+    correlationData: []
   })
   impressionTelemetryAfterMethodResolves(arg: string){
     return new Promise((resolve) => {
@@ -63,25 +82,73 @@ export class TelemetryPage {
   }
 
   @GenerateInteractTelemetryAfterMethod({
-    interactType: InteractType.TOUCH,
-        subType: InteractSubtype.CONTINUE_CLICKED,
-        env: Environment.LIBRARY,
-        pageId: PageId.LIBRARY
+    type: InteractType.TOUCH,
+    subType: InteractSubtype.LOGOUT_SUCCESS,
+    id: '',
+    pageId: PageId.LOGIN,
+    pos: [{}],
+    values: [],
+    env: Environment.COURSE,
+    rollup: {
+      l1: '',
+      l2: '',
+      l3: '',
+      l4: ''
+    },
+    valueMap: {
+        
+    },
+    correlationData: [],
+    objId: '',
+    objType: '',
+    objVer: ''
   })
   interactTelemetryAfter(){}
   @GenerateInteractTelemetryBeforeMethod({
-    interactType: InteractType.TOUCH,
-        subType: InteractSubtype.CONTINUE_CLICKED,
-        env: Environment.LIBRARY,
-        pageId: PageId.LIBRARY
+    type: InteractType.TOUCH,
+    subType: InteractSubtype.LOGOUT_SUCCESS,
+    id: '',
+    pageId: PageId.LOGIN,
+    pos: [{}],
+    values: [],
+    env: Environment.COURSE,
+    rollup: {
+      l1: '',
+      l2: '',
+      l3: '',
+      l4: ''
+    },
+    valueMap: {
+        
+    },
+    correlationData: [],
+    objId: '',
+    objType: '',
+    objVer: ''
   })
   interactTelemetryBefore(){}
 
   @GenerateInteractTelemetryAfterMethodResolves({
-    interactType: InteractType.TOUCH,
-    subType: InteractSubtype.CONTINUE_CLICKED,
-    env: Environment.LIBRARY,
-    pageId: PageId.LIBRARY
+    type: InteractType.TOUCH,
+    subType: InteractSubtype.LOGOUT_SUCCESS,
+    id: '',
+    pageId: PageId.LOGIN,
+    pos: [{}],
+    values: [],
+    env: Environment.COURSE,
+    rollup: {
+      l1: '',
+      l2: '',
+      l3: '',
+      l4: ''
+    },
+    valueMap: {
+        
+    },
+    correlationData: [],
+    objId: '',
+    objType: '',
+    objVer: ''
   })
   interactTelemetryAfterResolves(arg: string){
     return new Promise((resolve) => {
@@ -91,10 +158,26 @@ export class TelemetryPage {
   }
 
   @GenerateInteractTelemetryAfterMethodRejects({
-    interactType: InteractType.TOUCH,
-    subType: InteractSubtype.CONTINUE_CLICKED,
-    env: Environment.LIBRARY,
-    pageId: PageId.LIBRARY
+    type: InteractType.TOUCH,
+    subType: InteractSubtype.LOGOUT_SUCCESS,
+    id: '',
+    pageId: PageId.LOGIN,
+    pos: [{}],
+    values: [],
+    env: Environment.COURSE,
+    rollup: {
+      l1: '',
+      l2: '',
+      l3: '',
+      l4: ''
+    },
+    valueMap: {
+        
+    },
+    correlationData: [],
+    objId: '',
+    objType: '',
+    objVer: ''
   })
   interactTelemetryAfterRejects(arg: string){
     return new Promise((resolve, reject) => {
@@ -103,20 +186,24 @@ export class TelemetryPage {
   });
   }
   @GenerateLogTelemetryBeforeMethod({
-    logLevel: LogLevel.TRACE,
-    message: '',
-    env: Environment.LIBRARY,
     type: LogType.NOTIFICATION,
-    params: []
+    level: LogLevel.DEBUG,
+    message: '',
+    pageId: PageId.LOGIN,
+    params: [],
+    env: Environment.COURSE,
+    actorType: ''
   })
   logTelemetryBefore(){}
 
   @GenerateLogTelemetryAfterMethodResolves({
-    logLevel: LogLevel.TRACE,
-    message: '',
-    env: Environment.LIBRARY,
     type: LogType.NOTIFICATION,
-    params: []
+    level: LogLevel.DEBUG,
+    message: '',
+    pageId: PageId.LOGIN,
+    params: [],
+    env: Environment.COURSE,
+    actorType: ''
   })
   logTelemetryAfter(arg: string){
     return new Promise((resolve) => {
@@ -126,23 +213,101 @@ export class TelemetryPage {
   }
 
   @GenerateStartTelemetryAfterMethod({
-    pageId: PageId.LIBRARY,
-    env: Environment.LIBRARY,
-    mode: Mode.PLAY
+    type: '',
+    deviceSpecification: {
+      os : '',
+      make : '',
+      id : '',
+      mem : -1.0,
+      idisk : -1.0,
+      edisk : -1.0,
+      scrn : -1.0,
+      camera: '',
+      cpu : '',
+      sims : -1,
+      cap:  []
+    },
+    loc: '',
+    mode: '',
+    duration: 1,
+    pageId: PageId.LOGIN,
+    env: Environment.COURSE,
+    objId: '',
+    objType: '',
+    objVer: '',
+    rollup: {
+      l1: '',
+      l2: '',
+      l3: '',
+      l4: ''
+    },
+    correlationData: []
   })
   startTelemetryAfter(){}
 
   @GenerateStartTelemetryBeforeMethod({
-    pageId: PageId.LIBRARY,
-    env: Environment.LIBRARY,
-    mode: Mode.PLAY
+    type: '',
+    deviceSpecification: {
+      os : '',
+      make : '',
+      id : '',
+      mem : -1.0,
+      idisk : -1.0,
+      edisk : -1.0,
+      scrn : -1.0,
+      camera: '',
+      cpu : '',
+      sims : -1,
+      cap:  []
+    },
+    loc: '',
+    mode: '',
+    duration: 1,
+    pageId: PageId.LOGIN,
+    env: Environment.COURSE,
+    objId: '',
+    objType: '',
+    objVer: '',
+    rollup: {
+      l1: '',
+      l2: '',
+      l3: '',
+      l4: ''
+    },
+    correlationData: []
   })
   GenerateStartTelemetryBeforeMethod(){}
 
 @GenerateStartTelemetryAfterMethodResolves({
-  pageId: PageId.LIBRARY,
-    env: Environment.LIBRARY,
-    mode: Mode.PLAY
+  type: '',
+  deviceSpecification: {
+    os : '',
+    make : '',
+    id : '',
+    mem : -1.0,
+    idisk : -1.0,
+    edisk : -1.0,
+    scrn : -1.0,
+    camera: '',
+    cpu : '',
+    sims : -1,
+    cap:  []
+  },
+  loc: '',
+  mode: '',
+  duration: 1,
+  pageId: PageId.LOGIN,
+  env: Environment.COURSE,
+  objId: '',
+  objType: '',
+  objVer: '',
+  rollup: {
+    l1: '',
+    l2: '',
+    l3: '',
+    l4: ''
+  },
+  correlationData: []
 })
   startTelemetryAfterResolves(arg){
     return new Promise((resolve) => {
@@ -151,16 +316,25 @@ export class TelemetryPage {
     });
   }
 @GenerateErrorTelemetryAfterMethodThrows({
-  interactType: InteractType.TOUCH,
-  subType: InteractSubtype.CONTINUE_CLICKED,
-  env: Environment.LIBRARY,
-  pageId: PageId.LIBRARY
+  errorCode: '',
+  errorType: '',
+  stacktrace: '',
+  pageId: PageId.LOGIN,
+  env: Environment.COURSE
 })
   errorTelemetryAfter(arg: string){
     return new Promise((resolve, reject) => {
       console.log('error message', arg);
       reject();
     })
+  }
+
+  onSync() {
+    this.telemetryService.sync().subscribe((val) => {
+      console.log(val);
+    }, err => {
+      console.log(err);
+    });
   }
 }
 

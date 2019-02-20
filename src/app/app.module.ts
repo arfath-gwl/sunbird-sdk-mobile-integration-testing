@@ -69,6 +69,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'CONTENT_FEEDBACK_SERVICE',
     useFactory: () => SunbirdSdk.instance.contentFeedbackService
+  },{
+    provide: 'TELEMETRY_SERVICE',
+    useFactory: () => SunbirdSdk.instance.telemetryService
   }];
 };
 
@@ -101,7 +104,6 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
             mobileAppConsumer: 'mobile_device',
             channelId: '505c7c48ac6dc1edc9b08f21db5a571d',
             producerId: 'staging.diksha.app',
-            deviceId: deviceId,
             producerUniqueId: 'sunbird.app'
           },
           cached_requests: {
@@ -145,6 +147,9 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         systemSettingsConfig: {
           systemSettingsApiPath: '/api/data/v1',
           systemSettingsDirPath: '/data/system',
+        }, 
+        telemetryConfig: {
+          deviceRegisterApiPath: ''
         }
       });
     };
