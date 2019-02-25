@@ -78,15 +78,15 @@ export class ProfilePage {
   }
 
   getCurrentProfile() {
-    this.profileService.getActiveProfileSession().toPromise().then((result: any) => {
-      console.log('getCurrentProfileSession', result);
+    this.profileService.getActiveSessionProfile().toPromise().then((result: any) => {
+      console.log('getCurrentProfile', result);
     }).catch((error: any) => {
       console.log('error', error);
     })
   }
 
   setCurrentProfile() {
-    const uid = '0b504bf0-b0b4-439f-9a86-86b93a0048fd';
+    const uid = prompt('Enter profileID');
     this.profileService.setActiveSessionForProfile(uid).subscribe(success => {
       console.log('success in setting current profile--', success);
     }, error => {
