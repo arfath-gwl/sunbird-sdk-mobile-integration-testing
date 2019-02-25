@@ -1,15 +1,29 @@
-import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ImpressionType, ImpressionSubtype, PageId, Environment, GenerateImpressionTelemetryAfterMethod,
-  GenerateImpressionTelemetryBeforeMethod, GenerateImpressionTelemetryAfterMethodResolves, TelemetryService} from 'sunbird-sdk';
-import {GenerateInteractTelemetryAfterMethod,
-        InteractType, InteractSubtype, Rollup,
-        GenerateInteractTelemetryBeforeMethod, 
-        GenerateInteractTelemetryAfterMethodResolves,
-        GenerateInteractTelemetryAfterMethodRejects,
-        GenerateErrorTelemetryAfterMethodThrows} from 'sunbird-sdk';      
-import {LogLevel, LogType, GenerateLogTelemetryBeforeMethod, GenerateLogTelemetryAfterMethodResolves} from 'sunbird-sdk';  
-import {Mode, GenerateStartTelemetryAfterMethod, GenerateStartTelemetryAfterMethodResolves, GenerateStartTelemetryBeforeMethod, DeviceSpecification} from 'sunbird-sdk';
+import {Component, Inject} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {
+  Environment,
+  GenerateErrorTelemetryAfterMethodThrows,
+  GenerateImpressionTelemetryAfterMethod,
+  GenerateImpressionTelemetryAfterMethodResolves,
+  GenerateImpressionTelemetryBeforeMethod,
+  GenerateInteractTelemetryAfterMethod,
+  GenerateInteractTelemetryAfterMethodRejects,
+  GenerateInteractTelemetryAfterMethodResolves,
+  GenerateInteractTelemetryBeforeMethod,
+  GenerateLogTelemetryAfterMethodResolves,
+  GenerateLogTelemetryBeforeMethod,
+  GenerateStartTelemetryAfterMethod,
+  GenerateStartTelemetryAfterMethodResolves,
+  GenerateStartTelemetryBeforeMethod,
+  ImpressionSubtype,
+  ImpressionType,
+  InteractSubtype,
+  InteractType,
+  LogLevel,
+  LogType,
+  PageId,
+  TelemetryService
+} from 'sunbird-sdk';
 
 /**
  * Generated class for the TelemetryPage page.
@@ -334,6 +348,8 @@ export class TelemetryPage {
       console.log(val);
     }, err => {
       console.log(err);
+    }, () => {
+      console.log('complete')
     });
   }
 }

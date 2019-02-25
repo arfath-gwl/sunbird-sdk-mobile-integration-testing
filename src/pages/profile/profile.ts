@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {
   AcceptTermsConditionRequest,
   GenerateOtpRequest,
+  GetAllProfileRequest,
   IsProfileAlreadyInUseRequest,
   LocationSearchCriteria,
   Profile,
@@ -11,7 +12,7 @@ import {
   ServerProfileDetailsRequest,
   ServerProfileSearchCriteria,
   UpdateServerProfileInfoRequest,
-  VerifyOtpRequest,
+  VerifyOtpRequest
 } from 'sunbird-sdk';
 
 /**
@@ -63,12 +64,13 @@ export class ProfilePage {
   }
 
   getAllProfiles() {
-    // const request: GetAllProfileRequest = {
-    //   local: true,
-    //   server: false,
-    //   groupId: '22dba91b-e3e5-42d9-92cd-890380206edd'
-    // };
-    this.profileService.getAllProfiles().toPromise().then((success: any) => {
+    const request: GetAllProfileRequest = {
+      local: JSON.parse(prompt('local? true or false')),
+      server: JSON.parse(prompt('server? true or false')),
+      groupId: prompt('groupID')
+    };
+
+    this.profileService.getAllProfiles(request).toPromise().then((success: any) => {
       console.log('successfully got all profiles', success)
     }).catch((error: any) => {
       console.log('error while getting all profiles', error);
@@ -84,7 +86,7 @@ export class ProfilePage {
   }
 
   setCurrentProfile() {
-    const uid = '7149d27d-c80e-4a8d-ad9c-4c24f8149a7d';
+    const uid = '0b504bf0-b0b4-439f-9a86-86b93a0048fd';
     this.profileService.setActiveSessionForProfile(uid).subscribe(success => {
       console.log('success in setting current profile--', success);
     }, error => {

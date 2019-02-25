@@ -149,7 +149,11 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           systemSettingsDirPath: '/data/system',
         }, 
         telemetryConfig: {
-          deviceRegisterApiPath: ''
+          deviceRegisterHost: 'https://api.diksha.gov.in',
+          deviceRegisterApiPath: '',
+          telemetryApiPath: '/api/data/v1',
+          telemetrySyncBandwidth: 2,
+          telemetrySyncThreshold: 2
         }
       });
     };
