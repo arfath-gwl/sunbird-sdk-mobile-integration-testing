@@ -46,6 +46,7 @@ export class TelemetryPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad TelemetryPage');
   }
+
   @GenerateImpressionTelemetryAfterMethod({
     type: ImpressionType.LIST,
     subType: ImpressionSubtype.RATING_POPUP,
@@ -58,9 +59,10 @@ export class TelemetryPage {
     objVer: '',
     correlationData: []
   })
-  impressionTelemetryAfter(){
-   
+  impressionTelemetryAfter() {
+
   }
+
   @GenerateImpressionTelemetryBeforeMethod({
     type: ImpressionType.LIST,
     subType: ImpressionSubtype.RATING_POPUP,
@@ -73,9 +75,10 @@ export class TelemetryPage {
     objVer: '',
     correlationData: []
   })
-  impressionTelemetryBefore(){
-  
+  impressionTelemetryBefore() {
+
   }
+
   @GenerateImpressionTelemetryAfterMethodResolves({
     type: ImpressionType.LIST,
     subType: ImpressionSubtype.RATING_POPUP,
@@ -88,11 +91,11 @@ export class TelemetryPage {
     objVer: '',
     correlationData: []
   })
-  impressionTelemetryAfterMethodResolves(arg: string){
+  impressionTelemetryAfterMethodResolves(arg: string) {
     return new Promise((resolve) => {
       console.log('impression after resolve ' + arg);
       resolve();
-  });
+    });
   }
 
   @GenerateInteractTelemetryAfterMethod({
@@ -109,15 +112,15 @@ export class TelemetryPage {
       l3: '',
       l4: ''
     },
-    valueMap: {
-        
-    },
+    valueMap: {},
     correlationData: [],
     objId: '',
     objType: '',
     objVer: ''
   })
-  interactTelemetryAfter(){}
+  interactTelemetryAfter() {
+  }
+
   @GenerateInteractTelemetryBeforeMethod({
     type: InteractType.TOUCH,
     subType: InteractSubtype.LOGOUT_SUCCESS,
@@ -132,15 +135,14 @@ export class TelemetryPage {
       l3: '',
       l4: ''
     },
-    valueMap: {
-        
-    },
+    valueMap: {},
     correlationData: [],
     objId: '',
     objType: '',
     objVer: ''
   })
-  interactTelemetryBefore(){}
+  interactTelemetryBefore() {
+  }
 
   @GenerateInteractTelemetryAfterMethodResolves({
     type: InteractType.TOUCH,
@@ -156,19 +158,17 @@ export class TelemetryPage {
       l3: '',
       l4: ''
     },
-    valueMap: {
-        
-    },
+    valueMap: {},
     correlationData: [],
     objId: '',
     objType: '',
     objVer: ''
   })
-  interactTelemetryAfterResolves(arg: string){
+  interactTelemetryAfterResolves(arg: string) {
     return new Promise((resolve) => {
       console.log('interact after resolve ' + arg);
       resolve();
-  });
+    });
   }
 
   @GenerateInteractTelemetryAfterMethodRejects({
@@ -185,20 +185,19 @@ export class TelemetryPage {
       l3: '',
       l4: ''
     },
-    valueMap: {
-        
-    },
+    valueMap: {},
     correlationData: [],
     objId: '',
     objType: '',
     objVer: ''
   })
-  interactTelemetryAfterRejects(arg: string){
+  interactTelemetryAfterRejects(arg: string) {
     return new Promise((resolve, reject) => {
       console.log('interact after reject ', arg);
       reject();
-  });
+    });
   }
+
   @GenerateLogTelemetryBeforeMethod({
     type: LogType.NOTIFICATION,
     level: LogLevel.DEBUG,
@@ -208,7 +207,8 @@ export class TelemetryPage {
     env: Environment.COURSE,
     actorType: ''
   })
-  logTelemetryBefore(){}
+  logTelemetryBefore() {
+  }
 
   @GenerateLogTelemetryAfterMethodResolves({
     type: LogType.NOTIFICATION,
@@ -219,7 +219,7 @@ export class TelemetryPage {
     env: Environment.COURSE,
     actorType: ''
   })
-  logTelemetryAfter(arg: string){
+  logTelemetryAfter(arg: string) {
     return new Promise((resolve) => {
       console.log('log after resolve', arg);
       resolve();
@@ -229,17 +229,17 @@ export class TelemetryPage {
   @GenerateStartTelemetryAfterMethod({
     type: '',
     deviceSpecification: {
-      os : '',
-      make : '',
-      id : '',
-      mem : -1.0,
-      idisk : -1.0,
-      edisk : -1.0,
-      scrn : -1.0,
+      os: '',
+      make: '',
+      id: '',
+      mem: -1.0,
+      idisk: -1.0,
+      edisk: -1.0,
+      scrn: -1.0,
       camera: '',
-      cpu : '',
-      sims : -1,
-      cap:  []
+      cpu: '',
+      sims: -1,
+      cap: []
     },
     loc: '',
     mode: '',
@@ -257,22 +257,23 @@ export class TelemetryPage {
     },
     correlationData: []
   })
-  startTelemetryAfter(){}
+  startTelemetryAfter() {
+  }
 
   @GenerateStartTelemetryBeforeMethod({
     type: '',
     deviceSpecification: {
-      os : '',
-      make : '',
-      id : '',
-      mem : -1.0,
-      idisk : -1.0,
-      edisk : -1.0,
-      scrn : -1.0,
+      os: '',
+      make: '',
+      id: '',
+      mem: -1.0,
+      idisk: -1.0,
+      edisk: -1.0,
+      scrn: -1.0,
       camera: '',
-      cpu : '',
-      sims : -1,
-      cap:  []
+      cpu: '',
+      sims: -1,
+      cap: []
     },
     loc: '',
     mode: '',
@@ -290,56 +291,64 @@ export class TelemetryPage {
     },
     correlationData: []
   })
-  GenerateStartTelemetryBeforeMethod(){}
+  GenerateStartTelemetryBeforeMethod() {
+  }
 
-@GenerateStartTelemetryAfterMethodResolves({
-  type: '',
-  deviceSpecification: {
-    os : '',
-    make : '',
-    id : '',
-    mem : -1.0,
-    idisk : -1.0,
-    edisk : -1.0,
-    scrn : -1.0,
-    camera: '',
-    cpu : '',
-    sims : -1,
-    cap:  []
-  },
-  loc: '',
-  mode: '',
-  duration: 1,
-  pageId: PageId.LOGIN,
-  env: Environment.COURSE,
-  objId: '',
-  objType: '',
-  objVer: '',
-  rollup: {
-    l1: '',
-    l2: '',
-    l3: '',
-    l4: ''
-  },
-  correlationData: []
-})
-  startTelemetryAfterResolves(arg){
+  @GenerateStartTelemetryAfterMethodResolves({
+    type: '',
+    deviceSpecification: {
+      os: '',
+      make: '',
+      id: '',
+      mem: -1.0,
+      idisk: -1.0,
+      edisk: -1.0,
+      scrn: -1.0,
+      camera: '',
+      cpu: '',
+      sims: -1,
+      cap: []
+    },
+    loc: '',
+    mode: '',
+    duration: 1,
+    pageId: PageId.LOGIN,
+    env: Environment.COURSE,
+    objId: '',
+    objType: '',
+    objVer: '',
+    rollup: {
+      l1: '',
+      l2: '',
+      l3: '',
+      l4: ''
+    },
+    correlationData: []
+  })
+  startTelemetryAfterResolves(arg) {
     return new Promise((resolve) => {
       console.log('start after resolve', arg);
       resolve();
     });
   }
-@GenerateErrorTelemetryAfterMethodThrows({
-  errorCode: '',
-  errorType: '',
-  stacktrace: '',
-  pageId: PageId.LOGIN,
-  env: Environment.COURSE
-})
-  errorTelemetryAfter(arg: string){
+
+  @GenerateErrorTelemetryAfterMethodThrows({
+    errorCode: '',
+    errorType: '',
+    stacktrace: '',
+    pageId: PageId.LOGIN,
+    env: Environment.COURSE
+  })
+  errorTelemetryAfter(arg: string) {
     return new Promise((resolve, reject) => {
       console.log('error message', arg);
       reject();
+    })
+  }
+
+  telemetrySyncStat() {
+    this.telemetryService.getTelemetryStat().subscribe((val) => {
+      console.log(val);
     })
   }
 
