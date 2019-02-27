@@ -76,16 +76,8 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
 };
 
 export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platform) => () => Promise<void> =
-  (uniqueDeviceID: UniqueDeviceID, platform: Platform) => {
+  () => {
     return async () => {
-      let deviceId = '';
-
-      if (platform.is('core') || platform.is('mobileweb')) {
-        deviceId = '4adce7fad56e02b7';
-      } else {
-        deviceId = await uniqueDeviceID.get();
-      }
-
       await SunbirdSdk.instance.init({
         fileConfig: {
           debugMode: true
@@ -204,7 +196,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     UniqueDeviceID,
     ...sunbirdSdkServicesProvidersFactory(),
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [UniqueDeviceID, Platform], multi: true}
+    {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [], multi: true}
 
   ]
 })
