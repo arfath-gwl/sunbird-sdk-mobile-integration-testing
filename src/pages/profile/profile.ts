@@ -55,7 +55,7 @@ export class ProfilePage {
   }
 
   deleteProfileWithUID() {
-    let uid = '45359cbb-c513-4913-9ab6-1d7da75d536f';
+    let uid = prompt('user id');
     this.profileService.deleteProfile(uid).toPromise().then((result: any) => {
       console.log('successfully deleted.', result);
     }).catch((error: any) => {
