@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, ErrorHandler, NgModule, Provider} from '@angular/core';
-import {IonicApp, IonicErrorHandler, IonicModule, Platform} from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {MyApp} from './app.component';
@@ -75,8 +75,7 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }];
 };
 
-export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platform) => () => Promise<void> =
-  () => {
+export const sunbirdSdkFactory = () => {
     return async () => {
       await SunbirdSdk.instance.init({
         fileConfig: {
@@ -196,7 +195,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     UniqueDeviceID,
     ...sunbirdSdkServicesProvidersFactory(),
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [], multi: true}
+    {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, multi: true}
 
   ]
 })
