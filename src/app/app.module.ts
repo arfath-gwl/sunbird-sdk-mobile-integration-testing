@@ -129,7 +129,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           frameworkApiPath: '/api/framework/v1',
           searchOrganizationApiPath: '/api/org/v1',
           frameworkConfigDirPath: '/data/framework',
-          channelConfigDirPath: '/data/channel'
+          channelConfigDirPath: '/data/channel',
+          systemSettingsDefaultChannelIdKey: 'custodianOrgId'
         },
         profileServiceConfig: {
           profileApiPath: '/api/user/v1',
@@ -153,7 +154,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           deviceRegisterApiPath: '',
           telemetryApiPath: '/api/data/v1',
           telemetrySyncBandwidth: 2,
-          telemetrySyncThreshold: 2
+          telemetrySyncThreshold: 2,
         }
       });
     };
