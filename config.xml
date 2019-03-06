@@ -92,5 +92,6 @@
     <variable name="URL_HOST" value="mobile"/>
   </plugin>
   <plugin name="sb-cordova-plugin-db" spec="git+https://github.com/swayangjit/sb-cordova-plugin-db.git"/>
+  <plugin name="cordova-plugin-android-downloadmanager" spec="0.5.0"/>
     <engine name="android" spec="~7.1.4" />
 </widget>
