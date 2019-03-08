@@ -4,7 +4,6 @@ import {
   GenerateOtpRequest,
   GetAllProfileRequest,
   IsProfileAlreadyInUseRequest,
-  LocationSearchCriteria,
   Profile,
   ProfileService,
   ProfileSource,
@@ -215,14 +214,14 @@ export class ProfilePage {
     });
   }
 
-  searchLocation() {
-    const request: LocationSearchCriteria = {
-      type: 'state',
-    };
-    this.profileService.searchLocation(request).subscribe((success) => {
-      console.log('Successfully searched location--', success);
-    }, error => {
-      console.log('error in searching location --', error)
-    });
-  }
+  // searchLocation() {
+  //   const request: LocationSearchCriteria = {
+  //     type: 'state',
+  //   };
+  //   this.profileService.searchLocation(request).subscribe((success) => {
+  //     console.log('Successfully searched location--', success);
+  //   }, error => {
+  //     console.log('error in searching location --', error)
+  //   });
+  // }
 }

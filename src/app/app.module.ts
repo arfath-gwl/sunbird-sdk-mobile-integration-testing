@@ -19,6 +19,7 @@ import {PageServicePage} from '../pages/page-service/page-service';
 import {FormPage} from '../pages/form/form';
 import {TelemetryPage} from '../pages/telemetry/telemetry';
 import {ContentPage} from "../pages/content/content";
+import {DownloadPage} from '../pages/download/download';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -72,6 +73,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   },{
     provide: 'TELEMETRY_SERVICE',
     useFactory: () => SunbirdSdk.instance.telemetryService
+  }, {
+    provide: 'DOWNLOAD_SERVICE',
+    useFactory: () => SunbirdSdk.instance.downloadService
   }];
 };
 
@@ -106,7 +110,8 @@ export const sunbirdSdkFactory = () => {
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
-          apiPath: '/api/content/v1'
+          apiPath: '/api/content/v1',
+          searchApiPath: ''
         },
         courseServiceConfig: {
           apiPath: '/api/course/v1'
@@ -139,7 +144,10 @@ export const sunbirdSdkFactory = () => {
         systemSettingsConfig: {
           systemSettingsApiPath: '/api/data/v1',
           systemSettingsDirPath: '/data/system',
-        }, 
+        },
+        sharedPreferencesConfig: {
+          debugMode: true
+        },
         telemetryConfig: {
           deviceRegisterHost: 'https://api.diksha.gov.in',
           deviceRegisterApiPath: '',
@@ -165,7 +173,8 @@ export const sunbirdSdkFactory = () => {
     PageServicePage,
     FormPage,
     TelemetryPage,
-    ContentPage
+    ContentPage,
+    DownloadPage
   ],
   imports: [
     BrowserModule,
@@ -186,7 +195,8 @@ export const sunbirdSdkFactory = () => {
     PageServicePage,
     FormPage,
     TelemetryPage,
-    ContentPage
+    ContentPage,
+    DownloadPage
   ],
   providers: [
     File,

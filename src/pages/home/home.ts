@@ -24,6 +24,7 @@ import {FormPage} from "../form/form";
 import {Observable, Subject} from 'rxjs';
 import {ContentPage} from "../content/content";
 import {TelemetryPage} from "../telemetry/telemetry";
+import {DownloadPage} from '../download/download';
 
 declare const escape;
 
@@ -125,8 +126,13 @@ export class HomePage {
   goToContentPage(){
     this.navCtrl.push(ContentPage);
   }
+
   goToTelemetryPage(){
     this.navCtrl.push(TelemetryPage);
+  }
+
+  goToDownloadPage() {
+    this.navCtrl.push(DownloadPage);
   }
 
   private fetchLoggedInUser() {
