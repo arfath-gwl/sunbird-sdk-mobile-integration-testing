@@ -76,6 +76,9 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'DOWNLOAD_SERVICE',
     useFactory: () => SunbirdSdk.instance.downloadService
+  }, {
+    provide: 'EVENTS_BUS_SERVICE',
+    useFactory: () => SunbirdSdk.instance.eventsBusService
   }];
 };
 
@@ -83,10 +86,10 @@ export const sunbirdSdkFactory = () => {
     return async () => {
       await SunbirdSdk.instance.init({
         fileConfig: {
-          debugMode: true
+          debugMode: false
         },
         apiConfig: {
-          debugMode: true,
+          debugMode: false,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
@@ -111,7 +114,7 @@ export const sunbirdSdkFactory = () => {
         },
         contentServiceConfig: {
           apiPath: '/api/content/v1',
-          searchApiPath: ''
+          searchApiPath: '/api/composite/v1'
         },
         courseServiceConfig: {
           apiPath: '/api/course/v1'

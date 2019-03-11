@@ -1,11 +1,14 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnDestroy} from '@angular/core';
 import {
   ChildContentRequest,
   ContentDetailRequest,
   ContentFeedbackService,
   ContentRequest,
   ContentService,
+  EventNamespace,
+  EventsBusService
 } from 'sunbird-sdk';
+import {Subscription} from 'rxjs/Subscription';
 
 /**
  * Generated class for the ContentPage page.
@@ -14,15 +17,28 @@ import {
  * Ionic pages and navigation.
  */
 
+declare var cordova;
+
 @Component({
   selector: 'page-content',
   templateUrl: 'content.html',
 })
-export class ContentPage {
+export class ContentPage implements OnDestroy {
+
+  private eventsSubscription: Subscription;
 
   constructor(
     @Inject('CONTENT_SERVICE') private contentService: ContentService,
+    @Inject('EVENTS_BUS_SERVICE') private eventsBusService: EventsBusService,
     @Inject('CONTENT_FEEDBACK_SERVICE') private contentFeedbackService: ContentFeedbackService) {
+    this.eventsSubscription = this.eventsBusService
+      .events(EventNamespace.DOWNLOADS)
+      .do((e) => console.log(e))
+      .subscribe() as any;
+  }
+
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
   }
 
   getContentDetails() {
@@ -123,8 +139,25 @@ export class ContentPage {
 
   }
 
-  importContentData() {
-
+  importContent() {
+    this.contentService.importContent({
+      contentImportArray: [{
+        isChildContent: false,
+        destinationFolder: cordova.file.externalDataDirectory,
+        contentId: 'do_21264270761184460811673'
+      }, {
+        isChildContent: false,
+        destinationFolder: cordova.file.externalDataDirectory,
+        contentId: 'do_2124339505053450241746'
+      }, {
+        isChildContent: false,
+        destinationFolder: cordova.file.externalDataDirectory,
+        contentId: 'do_212296658391777280113'
+      }],
+      contentStatusArray: []
+    }).subscribe((e) => {
+      console.log(e);
+    })
   }
 
   subscribeForImportStatus() {
