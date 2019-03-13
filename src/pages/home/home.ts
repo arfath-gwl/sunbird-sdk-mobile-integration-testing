@@ -3,7 +3,7 @@ import {NavController, Platform} from 'ionic-angular';
 import {
   ApiService,
   AuthService,
-  OauthSession,
+  OAuthSession,
   OAuthSessionProvider,
   ProfileService,
   SdkConfig,
@@ -137,7 +137,7 @@ export class HomePage {
 
   private fetchLoggedInUser() {
     this.authService.getSession()
-      .mergeMap((session: OauthSession | undefined) => {
+      .mergeMap((session: OAuthSession | undefined) => {
         if (!session) {
           return Observable.of(undefined);
         }
@@ -180,8 +180,8 @@ class DebugSessionProvider implements SessionProvider {
     const rT = response.refresh_token;
 
     return {
-      accessToken: aT,
-      refreshToken: rT,
+      access_token: aT,
+      refresh_token: rT,
       userToken: uid
     }
   }
