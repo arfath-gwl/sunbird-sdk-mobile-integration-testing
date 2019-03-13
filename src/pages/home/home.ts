@@ -24,6 +24,7 @@ import {FormPage} from "../form/form";
 import {Observable, Subject} from 'rxjs';
 import {ContentPage} from "../content/content";
 import {TelemetryPage} from "../telemetry/telemetry";
+import { PlayerPage } from '../player/player';
 
 declare const escape;
 
@@ -144,6 +145,10 @@ export class HomePage {
           this.loggedInUser$.next(profile);
         });
       });
+  }
+
+  launchPlayer() {
+    this.navCtrl.push(PlayerPage);
   }
 }
 

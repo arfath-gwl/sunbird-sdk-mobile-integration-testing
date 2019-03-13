@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   AcceptTermsConditionRequest,
   GenerateOtpRequest,
@@ -136,8 +136,8 @@ export class ProfilePage {
       .then((success: any) => {
         console.log(' successfully get ServerProfile Details', success);
       }).catch((error: any) => {
-      console.log('error while getting serverProfileDetails--', error);
-    });
+        console.log('error while getting serverProfileDetails--', error);
+      });
   }
 
   getServerProfiles() {
@@ -154,8 +154,8 @@ export class ProfilePage {
       .then((success: any) => {
         console.log('success getServerProfiles', success);
       }).catch((error: any) => {
-      console.log(' error ', error);
-    });
+        console.log(' error ', error);
+      });
   }
 
   getTenantInfo() {
@@ -163,8 +163,8 @@ export class ProfilePage {
       .then((success: any) => {
         console.log('success in tenant info', success);
       }).catch((error: any) => {
-      console.log('error', error);
-    })
+        console.log('error', error);
+      })
   }
 
   acceptTermsConditions() {
@@ -217,7 +217,9 @@ export class ProfilePage {
 
   searchLocation() {
     const request: LocationSearchCriteria = {
-      type: 'state',
+      filters: {
+        type: 'state'
+      }
     };
     this.profileService.searchLocation(request).subscribe((success) => {
       console.log('Successfully searched location--', success);

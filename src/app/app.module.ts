@@ -1,24 +1,30 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, ErrorHandler, NgModule, Provider} from '@angular/core';
-import {IonicApp, IonicErrorHandler, IonicModule, Platform} from 'ionic-angular';
-import {SplashScreen} from '@ionic-native/splash-screen';
-import {StatusBar} from '@ionic-native/status-bar';
-import {MyApp} from './app.component';
-import {HomePage} from '../pages/home/home';
-import {SunbirdSdk} from 'sunbird-sdk';
-import {UniqueDeviceID} from '@ionic-native/unique-device-id';
-import {ProfilePage} from '../pages/profile/profile';
-import {FrameworkPage} from '../pages/framework/framework';
-import {DbPage} from '../pages/db/db';
-import {ApiPage} from '../pages/api/api';
-import {ReactiveFormsModule} from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { APP_INITIALIZER, ErrorHandler, NgModule, Provider } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule, Platform } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
+import { SunbirdSdk } from 'sunbird-sdk';
+import { UniqueDeviceID } from '@ionic-native/unique-device-id';
+import { ProfilePage } from '../pages/profile/profile';
+import { FrameworkPage } from '../pages/framework/framework';
+import { DbPage } from '../pages/db/db';
+import { ApiPage } from '../pages/api/api';
+import { ReactiveFormsModule } from '@angular/forms';
 import GroupPage from '../pages/group/group';
-import {File} from '@ionic-native/file';
-import {CoursePage} from "../pages/course/course";
-import {PageServicePage} from '../pages/page-service/page-service';
-import {FormPage} from '../pages/form/form';
-import {TelemetryPage} from '../pages/telemetry/telemetry';
-import {ContentPage} from "../pages/content/content";
+import { File } from '@ionic-native/file';
+import { CoursePage } from "../pages/course/course";
+import { PageServicePage } from '../pages/page-service/page-service';
+import { FormPage } from '../pages/form/form';
+import { TelemetryPage } from '../pages/telemetry/telemetry';
+import { ContentPage } from "../pages/content/content";
+import { PlayerPageModule } from '../pages/player/player.module';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { PlayerService } from '../pages/player/player.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+
+
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -69,7 +75,7 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'CONTENT_FEEDBACK_SERVICE',
     useFactory: () => SunbirdSdk.instance.contentFeedbackService
-  },{
+  }, {
     provide: 'TELEMETRY_SERVICE',
     useFactory: () => SunbirdSdk.instance.telemetryService
   }];
@@ -115,7 +121,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
           dbName: 'GenieServices.db'
         },
         contentServiceConfig: {
-          apiPath: '/api/content/v1'
+          apiPath: '/api/content/v1',
+          searchApiPath: ''
         },
         courseServiceConfig: {
           apiPath: '/api/course/v1'
@@ -148,7 +155,7 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
         systemSettingsConfig: {
           systemSettingsApiPath: '/api/data/v1',
           systemSettingsDirPath: '/data/system',
-        }, 
+        },
         telemetryConfig: {
           deviceRegisterHost: 'https://api.diksha.gov.in',
           deviceRegisterApiPath: '',
@@ -179,7 +186,8 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    PlayerPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -202,9 +210,12 @@ export const sunbirdSdkFactory: (uniqueDeviceID: UniqueDeviceID, platform: Platf
     StatusBar,
     SplashScreen,
     UniqueDeviceID,
+    WebView,
+    PlayerService,
+    // ScreenOrientation,
     ...sunbirdSdkServicesProvidersFactory(),
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [UniqueDeviceID, Platform], multi: true}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: APP_INITIALIZER, useFactory: sunbirdSdkFactory, deps: [UniqueDeviceID, Platform], multi: true }
 
   ]
 })
