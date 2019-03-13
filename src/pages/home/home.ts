@@ -180,8 +180,8 @@ class DebugSessionProvider implements SessionProvider {
     const rT = response.refresh_token;
 
     return {
-      accessToken: aT,
-      refreshToken: rT,
+      access_token: aT,
+      refresh_token: rT,
       userToken: uid
     }
   }
