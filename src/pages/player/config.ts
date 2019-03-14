@@ -150,6 +150,10 @@ export const AppConfig = {
 }
 
 export const customConfig = {
+  "appContext": {
+    "server": false,
+    "local": true
+  },
   "context": {
     "pdata": {
       "id": "staging.diksha.app",
@@ -186,8 +190,8 @@ export const customConfig = {
     },
     "showEndPage": false,
     "overlay": {
-      "enableUserSwitcher": false,
-      "showUser": false
+      "enableUserSwitcher": true,
+      "showUser": true
     },
     "repos": "/widgets/content-plugins"
   },
