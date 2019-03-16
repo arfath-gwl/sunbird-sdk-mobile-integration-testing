@@ -1,7 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {
-  Environment,
   GenerateErrorTelemetryAfterMethodThrows,
   GenerateImpressionTelemetryAfterMethod,
   GenerateImpressionTelemetryAfterMethodResolves,
@@ -15,13 +14,6 @@ import {
   GenerateStartTelemetryAfterMethod,
   GenerateStartTelemetryAfterMethodResolves,
   GenerateStartTelemetryBeforeMethod,
-  ImpressionSubtype,
-  ImpressionType,
-  InteractSubtype,
-  InteractType,
-  LogLevel,
-  LogType,
-  PageId,
   TelemetryService
 } from 'sunbird-sdk';
 
@@ -48,48 +40,21 @@ export class TelemetryPage {
   }
 
   @GenerateImpressionTelemetryAfterMethod({
-    type: ImpressionType.LIST,
-    subType: ImpressionSubtype.RATING_POPUP,
-    pageId: PageId.LOGIN,
-    uri: '',
-    visits: [],
-    env: Environment.COURSE,
-    objId: '',
-    objType: '',
-    objVer: '',
-    correlationData: []
+    env: '',
   })
   impressionTelemetryAfter() {
 
   }
 
   @GenerateImpressionTelemetryBeforeMethod({
-    type: ImpressionType.LIST,
-    subType: ImpressionSubtype.RATING_POPUP,
-    pageId: PageId.LOGIN,
-    uri: '',
-    visits: [],
-    env: Environment.COURSE,
-    objId: '',
-    objType: '',
-    objVer: '',
-    correlationData: []
+    env: '',
   })
   impressionTelemetryBefore() {
 
   }
 
   @GenerateImpressionTelemetryAfterMethodResolves({
-    type: ImpressionType.LIST,
-    subType: ImpressionSubtype.RATING_POPUP,
-    pageId: PageId.LOGIN,
-    uri: '',
-    visits: [],
-    env: Environment.COURSE,
-    objId: '',
-    objType: '',
-    objVer: '',
-    correlationData: []
+    env: '',
   })
   impressionTelemetryAfterMethodResolves(arg: string) {
     return new Promise((resolve) => {
@@ -99,70 +64,19 @@ export class TelemetryPage {
   }
 
   @GenerateInteractTelemetryAfterMethod({
-    type: InteractType.TOUCH,
-    subType: InteractSubtype.LOGOUT_SUCCESS,
-    id: '',
-    pageId: PageId.LOGIN,
-    pos: [{}],
-    values: [],
-    env: Environment.COURSE,
-    rollup: {
-      l1: '',
-      l2: '',
-      l3: '',
-      l4: ''
-    },
-    valueMap: {},
-    correlationData: [],
-    objId: '',
-    objType: '',
-    objVer: ''
+    env: '',
   })
   interactTelemetryAfter() {
   }
 
   @GenerateInteractTelemetryBeforeMethod({
-    type: InteractType.TOUCH,
-    subType: InteractSubtype.LOGOUT_SUCCESS,
-    id: '',
-    pageId: PageId.LOGIN,
-    pos: [{}],
-    values: [],
-    env: Environment.COURSE,
-    rollup: {
-      l1: '',
-      l2: '',
-      l3: '',
-      l4: ''
-    },
-    valueMap: {},
-    correlationData: [],
-    objId: '',
-    objType: '',
-    objVer: ''
+    env: '',
   })
   interactTelemetryBefore() {
   }
 
   @GenerateInteractTelemetryAfterMethodResolves({
-    type: InteractType.TOUCH,
-    subType: InteractSubtype.LOGOUT_SUCCESS,
-    id: '',
-    pageId: PageId.LOGIN,
-    pos: [{}],
-    values: [],
-    env: Environment.COURSE,
-    rollup: {
-      l1: '',
-      l2: '',
-      l3: '',
-      l4: ''
-    },
-    valueMap: {},
-    correlationData: [],
-    objId: '',
-    objType: '',
-    objVer: ''
+    env: '',
   })
   interactTelemetryAfterResolves(arg: string) {
     return new Promise((resolve) => {
@@ -172,24 +86,7 @@ export class TelemetryPage {
   }
 
   @GenerateInteractTelemetryAfterMethodRejects({
-    type: InteractType.TOUCH,
-    subType: InteractSubtype.LOGOUT_SUCCESS,
-    id: '',
-    pageId: PageId.LOGIN,
-    pos: [{}],
-    values: [],
-    env: Environment.COURSE,
-    rollup: {
-      l1: '',
-      l2: '',
-      l3: '',
-      l4: ''
-    },
-    valueMap: {},
-    correlationData: [],
-    objId: '',
-    objType: '',
-    objVer: ''
+    env: '',
   })
   interactTelemetryAfterRejects(arg: string) {
     return new Promise((resolve, reject) => {
@@ -199,25 +96,13 @@ export class TelemetryPage {
   }
 
   @GenerateLogTelemetryBeforeMethod({
-    type: LogType.NOTIFICATION,
-    level: LogLevel.DEBUG,
-    message: '',
-    pageId: PageId.LOGIN,
-    params: [],
-    env: Environment.COURSE,
-    actorType: ''
+    env: '',
   })
   logTelemetryBefore() {
   }
 
   @GenerateLogTelemetryAfterMethodResolves({
-    type: LogType.NOTIFICATION,
-    level: LogLevel.DEBUG,
-    message: '',
-    pageId: PageId.LOGIN,
-    params: [],
-    env: Environment.COURSE,
-    actorType: ''
+    env: '',
   })
   logTelemetryAfter(arg: string) {
     return new Promise((resolve) => {
@@ -227,103 +112,19 @@ export class TelemetryPage {
   }
 
   @GenerateStartTelemetryAfterMethod({
-    type: '',
-    deviceSpecification: {
-      os: '',
-      make: '',
-      id: '',
-      mem: -1.0,
-      idisk: -1.0,
-      edisk: -1.0,
-      scrn: -1.0,
-      camera: '',
-      cpu: '',
-      sims: -1,
-      cap: []
-    },
-    loc: '',
-    mode: '',
-    duration: 1,
-    pageId: PageId.LOGIN,
-    env: Environment.COURSE,
-    objId: '',
-    objType: '',
-    objVer: '',
-    rollup: {
-      l1: '',
-      l2: '',
-      l3: '',
-      l4: ''
-    },
-    correlationData: []
+    env: '',
   })
   startTelemetryAfter() {
   }
 
   @GenerateStartTelemetryBeforeMethod({
-    type: '',
-    deviceSpecification: {
-      os: '',
-      make: '',
-      id: '',
-      mem: -1.0,
-      idisk: -1.0,
-      edisk: -1.0,
-      scrn: -1.0,
-      camera: '',
-      cpu: '',
-      sims: -1,
-      cap: []
-    },
-    loc: '',
-    mode: '',
-    duration: 1,
-    pageId: PageId.LOGIN,
-    env: Environment.COURSE,
-    objId: '',
-    objType: '',
-    objVer: '',
-    rollup: {
-      l1: '',
-      l2: '',
-      l3: '',
-      l4: ''
-    },
-    correlationData: []
+    env: '',
   })
   GenerateStartTelemetryBeforeMethod() {
   }
 
   @GenerateStartTelemetryAfterMethodResolves({
-    type: '',
-    deviceSpecification: {
-      os: '',
-      make: '',
-      id: '',
-      mem: -1.0,
-      idisk: -1.0,
-      edisk: -1.0,
-      scrn: -1.0,
-      camera: '',
-      cpu: '',
-      sims: -1,
-      cap: []
-    },
-    loc: '',
-    mode: '',
-    duration: 1,
-    pageId: PageId.LOGIN,
-    env: Environment.COURSE,
-    objId: '',
-    objType: '',
-    objVer: '',
-    rollup: {
-      l1: '',
-      l2: '',
-      l3: '',
-      l4: ''
-    },
-    correlationData: []
+    env: '',
   })
   startTelemetryAfterResolves(arg) {
     return new Promise((resolve) => {
@@ -332,13 +133,7 @@ export class TelemetryPage {
     });
   }
 
-  @GenerateErrorTelemetryAfterMethodThrows({
-    errorCode: '',
-    errorType: '',
-    stacktrace: '',
-    pageId: PageId.LOGIN,
-    env: Environment.COURSE
-  })
+  @GenerateErrorTelemetryAfterMethodThrows({})
   errorTelemetryAfter(arg: string) {
     return new Promise((resolve, reject) => {
       console.log('error message', arg);
