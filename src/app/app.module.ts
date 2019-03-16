@@ -89,7 +89,7 @@ export const sunbirdSdkFactory = () => {
           debugMode: false
         },
         apiConfig: {
-          debugMode: false,
+          debugMode: true,
           host: 'https://staging.ntp.net.in',
           baseUrl: 'https://staging.ntp.net.in/api',
           user_authentication: {
@@ -153,10 +153,13 @@ export const sunbirdSdkFactory = () => {
         },
         telemetryConfig: {
           deviceRegisterHost: 'https://api.diksha.gov.in',
-          deviceRegisterApiPath: '',
+          deviceRegisterApiPath: '/register',
           telemetryApiPath: '/api/data/v1',
           telemetrySyncBandwidth: 2,
           telemetrySyncThreshold: 2,
+        },
+        eventsBusConfig: {
+          debugMode: true
         }
       });
     };

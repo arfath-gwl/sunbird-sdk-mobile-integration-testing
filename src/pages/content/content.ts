@@ -5,7 +5,6 @@ import {
   ContentFeedbackService,
   ContentRequest,
   ContentService,
-  EventNamespace,
   EventsBusService
 } from 'sunbird-sdk';
 import {Subscription} from 'rxjs/Subscription';
@@ -32,7 +31,7 @@ export class ContentPage implements OnDestroy {
     @Inject('EVENTS_BUS_SERVICE') private eventsBusService: EventsBusService,
     @Inject('CONTENT_FEEDBACK_SERVICE') private contentFeedbackService: ContentFeedbackService) {
     this.eventsSubscription = this.eventsBusService
-      .events(EventNamespace.DOWNLOADS)
+      .events()
       .do((e) => console.log(e))
       .subscribe() as any;
   }
@@ -43,7 +42,7 @@ export class ContentPage implements OnDestroy {
 
   getContentDetails() {
     const request: ContentDetailRequest = {
-      contentId: 'do_21269736318051123211983'
+      contentId: prompt('Enter content ID')
     };
     this.contentService.getContentDetails(request).subscribe((val) => {
       console.log('Successfully getContentDetails--  ', val);

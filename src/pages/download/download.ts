@@ -1,6 +1,8 @@
 import {Component, Inject} from '@angular/core';
 import {DownloadService} from 'sunbird-sdk';
 
+declare var cordova;
+
 @Component({
   selector: 'page-download',
   templateUrl: 'download.html',
@@ -20,14 +22,14 @@ export class DownloadPage {
       identifier: prompt('enter identifier'),
       filename: 'dummy.pdf',
       mimeType: '',
-      destinationFolder: ''
+      destinationFolder: cordova.file.externalDataDirectory + '/Download'
     }, {
       downloadUrl: 'https://www.office.xerox.com/latest/SFTBR-04U.PDF',
       identifier: prompt('enter identifier'),
       filename: 'dummy.pdf',
       mimeType: '',
-      destinationFolder: ''
-    }]).subscribe();
+      destinationFolder: cordova.file.externalDataDirectory + '/Download'
+    }]).toPromise().then();
   }
 
   onCancel() {
