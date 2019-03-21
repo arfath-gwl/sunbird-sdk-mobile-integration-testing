@@ -25,7 +25,6 @@ import {Observable, Subject} from 'rxjs';
 import {ContentPage} from "../content/content";
 import {TelemetryPage} from "../telemetry/telemetry";
 import {DownloadPage} from '../download/download';
-import {PermissionsPage} from '../permissions/permissions';
 
 declare const escape;
 
@@ -134,10 +133,6 @@ export class HomePage {
 
   goToDownloadPage() {
     this.navCtrl.push(DownloadPage);
-  }
-
-  goToPermissionsPage() {
-    this.navCtrl.push(PermissionsPage);
   }
 
   private fetchLoggedInUser() {

@@ -21,7 +21,6 @@ import {TelemetryPage} from '../pages/telemetry/telemetry';
 import {ContentPage} from "../pages/content/content";
 import {DownloadPage} from '../pages/download/download';
 import {SunbirdSdkConfig} from '../environment/sunbird-sdk-config';
-import {PermissionsPage} from '../pages/permissions/permissions';
 
 export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   return [{
@@ -81,9 +80,6 @@ export const sunbirdSdkServicesProvidersFactory: () => Provider[] = () => {
   }, {
     provide: 'EVENTS_BUS_SERVICE',
     useFactory: () => SunbirdSdk.instance.eventsBusService
-  }, {
-    provide: 'ANDROID_PERMISSIONS_SERVICE',
-    useFactory: () => SunbirdSdk.instance.androidPermissionsService
   }];
 };
 
@@ -108,8 +104,7 @@ export const sunbirdSdkFactory = () => {
     FormPage,
     TelemetryPage,
     ContentPage,
-    DownloadPage,
-    PermissionsPage
+    DownloadPage
   ],
   imports: [
     BrowserModule,
@@ -131,8 +126,7 @@ export const sunbirdSdkFactory = () => {
     FormPage,
     TelemetryPage,
     ContentPage,
-    DownloadPage,
-    PermissionsPage
+    DownloadPage
   ],
   providers: [
     File,
